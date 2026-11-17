@@ -40,7 +40,18 @@ get the free-form SQL tool, and it accepts a single SELECT only.
 Mandatory deductible EUR 385 per year, plus an optional voluntary deductible of
 EUR 100–500. GP care and supplementary cover don't count towards the deductible.
 
-## Run it
+## Quick start (no terminal needed)
+
+1. Install [Python](https://www.python.org/downloads/) 3.10 or newer (on Windows, tick "Add to PATH").
+2. Download this repository (green **Code** button, then **Download ZIP**) and unzip it.
+3. Double-click **start-mac.command** (Mac) or **start-windows.bat** (Windows).
+   The first time, it sets things up and asks for your Anthropic API key, which it keeps
+   in a local `.anthropic_key` file. Your browser then opens the demo.
+   On a Mac, if it says the file can't be opened, right-click it and choose **Open**.
+
+Close the window to stop the demo.
+
+## Run it from a terminal
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate

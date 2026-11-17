@@ -402,7 +402,13 @@ def main():
                                 f"; EUR {ded:.2f} charged to deductible." if ded else ".")
                         elif uncovered == visits:
                             status = "denied"
-                            if not s_rule:
+                            if chronic:
+                                reason = ("Not covered yet: "
+                                          + (f"the {s_rule[3]} sessions under {sup} are used up and " if s_rule
+                                             else "no supplementary package with physiotherapy, and ")
+                                          + f"basic insurance only covers chronic-list physiotherapy from the "
+                                          f"{CHRONIC_BASIC_FROM_VISIT}st session in {year}.")
+                            elif not s_rule:
                                 reason = ("Physiotherapy is not covered: no supplementary package with "
                                           "physiotherapy, and no chronic indication under basic insurance.")
                             else:
@@ -410,9 +416,18 @@ def main():
                                           f"sessions under {sup} already used in {year}.")
                         else:
                             status = "partially_paid"
-                            reason = (f"{visits - uncovered} of {visits} sessions covered; {uncovered} "
-                                      f"session(s) exceed the annual limit of {s_rule[3] if s_rule else 0} under "
-                                      f"{sup or 'no supplementary package'}.")
+                            parts = []
+                            if by_sup:
+                                parts.append(f"{by_sup} under {sup}")
+                            if by_basic:
+                                parts.append(f"{by_basic} under basic insurance")
+                            why = (f"the annual limit of {s_rule[3]} sessions under {sup} is reached" if s_rule
+                                   else "there is no supplementary package with physiotherapy")
+                            if chronic:
+                                why += (f" and basic insurance only covers chronic-list physiotherapy from the "
+                                        f"{CHRONIC_BASIC_FROM_VISIT}st session")
+                            reason = (f"{visits - uncovered} of {visits} sessions covered ({', '.join(parts)}); "
+                                      f"{uncovered} session(s) not covered because {why}.")
                     else:
                         payer = None
                         for p in (basic, sup, dental):

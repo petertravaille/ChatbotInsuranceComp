@@ -56,9 +56,14 @@ def get_member_overview(con, member_id, year=CURRENT_YEAR):
         r = con.execute("SELECT max_visits_per_year FROM pol.coverage_rules WHERE policy_id = ? "
                         "AND care_category = 'physiotherapy'", (mp["supplementary_policy_id"],)).fetchone()
         physio_max = r[0] if r else None
-    pv = con.execute("SELECT physio_visits_claimed, physio_visits_assessed FROM member_physio_visits "
-                     "WHERE member_id = ? AND year = ?", (member_id, year)).fetchone()
-    claimed = pv["physio_visits_claimed"] if pv else 0
+    pv = con.execute(
+        "SELECT COALESCE(SUM(physio_visits),0) AS claimed, "
+        "COALESCE(SUM(CASE WHEN status = 'pending' THEN physio_visits END),0) AS pending, "
+        "COALESCE(SUM(CASE WHEN status = 'denied' THEN physio_visits END),0) AS denied "
+        "FROM claims WHERE member_id = ? AND care_category = 'physiotherapy' AND substr(service_date,1,4) = ?",
+        (member_id, str(year))).fetchone()
+    claimed = pv["claimed"]
+    chronic = bool(mp["chronic_physio_indication"])
     by_status = _rows(con.execute(
         "SELECT status, COUNT(*) AS claims, ROUND(SUM(claimed_amount_eur),2) AS claimed_eur, "
         "ROUND(SUM(COALESCE(reimbursed_amount_eur,0)),2) AS reimbursed_eur FROM claims "
@@ -67,7 +72,7 @@ def get_member_overview(con, member_id, year=CURRENT_YEAR):
         "member": dict(member),
         "year": year,
         "policies": {pid: names.get(pid) for pid in policy_ids},
-        "chronic_physio_indication": bool(mp["chronic_physio_indication"]),
+        "chronic_physio_indication": chronic,
         "deductible": {
             "mandatory_eur": ded_total - mp["voluntary_deductible_eur"],
             "voluntary_eur": mp["voluntary_deductible_eur"],
@@ -77,11 +82,18 @@ def get_member_overview(con, member_id, year=CURRENT_YEAR):
         },
         "physiotherapy": {
             "max_visits_per_year_supplementary": physio_max,
-            "visits_claimed": claimed,
-            "visits_assessed": pv["physio_visits_assessed"] if pv else 0,
+            "visits_claimed_total": claimed,
+            "visits_in_pending_claims": pv["pending"],
+            "visits_in_denied_claims": pv["denied"],
             "supplementary_visits_remaining": max(0, physio_max - claimed) if physio_max else 0,
-            "note": ("Chronic indication: basic insurance covers sessions from the 21st per year."
-                     if mp["chronic_physio_indication"] else None),
+            "note": " ".join(filter(None, [
+                ("Remaining visits count claims still pending as if they will be paid."
+                 if pv["pending"] and physio_max else None),
+                (f"Chronic indication: basic insurance covers sessions from the 21st per year "
+                 f"({max(0, 20 - claimed)} more session(s) before that starts)." if chronic else None),
+                (None if physio_max or chronic else
+                 "No supplementary package with physiotherapy, so physiotherapy is not covered."),
+            ])) or None,
         },
         "claims_by_status": by_status,
     }

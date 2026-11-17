@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PT Health Assistant</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<style>
+  :root {
+    --bg: #f5f7f8; --surface: #ffffff; --text: #1d2b33; --muted: #5d6b73; --line: #e1e7ea;
+    --brand: #2f9e8f; --brand-dark: #24566b; --user: #24566b; --user-text: #ffffff; --bot: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header.hero { background: var(--brand-dark); color: #fff; }
+  .hero-images { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .hero-images img { width: 100%; height: 150px; object-fit: cover; display: block; }
+  .hero-bar { max-width: 900px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .hero-bar h1 { font-size: 1.3rem; margin: 0; }
+  .hero-bar p { margin: 2px 0 0; font-size: .9rem; opacity: .85; }
+  .who { font-size: .9rem; display: flex; align-items: center; gap: 10px; }
+  .who[hidden] { display: none; }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .login h2 { margin-top: 0; font-size: 1.15rem; }
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .role { border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .role h3 { margin: 0 0 6px; font-size: 1rem; }
+  .role p { margin: 0 0 12px; color: var(--muted); font-size: .9rem; }
+  select, input[type=text], textarea { font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 10px; width: 100%; background: #fff; color: var(--text); }
+  button { font: inherit; border: 0; border-radius: 10px; padding: 10px 16px; background: var(--brand); color: #fff; cursor: pointer; }
+  button:hover { filter: brightness(1.05); }
+  button.secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); padding: 6px 12px; }
+  button:disabled { opacity: .6; cursor: default; }
+  .role button { margin-top: 10px; width: 100%; }
+  #chat { display: none; }
+  .messages { display: flex; flex-direction: column; gap: 12px; min-height: 300px; max-height: calc(100vh - 360px); overflow-y: auto; padding: 4px; }
+  .msg { max-width: 85%; padding: 12px 14px; border-radius: 14px; line-height: 1.45; overflow-x: auto; }
+  .msg.user { align-self: flex-end; background: var(--user); color: var(--user-text); border-bottom-right-radius: 4px; }
+  .msg.bot { align-self: flex-start; background: var(--bot); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .msg.bot p:first-child { margin-top: 0; } .msg.bot p:last-child { margin-bottom: 0; }
+  .msg table { border-collapse: collapse; font-size: .85rem; margin: 8px 0; }
+  .msg th, .msg td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
+  .msg th { background: #eef5f4; }
+  .sources { margin-top: 8px; font-size: .75rem; color: var(--muted); }
+  .msg.error { border-color: #e8636f; color: #a3303b; }
+  .typing { color: var(--muted); font-style: italic; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .suggestions button { background: #e5f3f1; color: var(--brand-dark); font-size: .85rem; padding: 6px 12px; border-radius: 999px; }
+  form.ask { display: flex; gap: 8px; margin-top: 12px; }
+  form.ask textarea { resize: none; height: 46px; }
+  .disclaimer { font-size: .75rem; color: var(--muted); margin-top: 10px; text-align: center; }
+  @media (max-width: 640px) {
+    .hero-images { grid-template-columns: 1fr; } .hero-images img:not(:first-child) { display: none; }
+    .hero-images img { height: 120px; }
+    .roles { grid-template-columns: 1fr; }
+    .msg { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-images">
+    <img src="/static/img/header-care.svg" alt="Doctor with stethoscope">
+    <img src="/static/img/header-physio.svg" alt="Physiotherapy session">
+    <img src="/static/img/header-claims.svg" alt="Insurance card and claim form">
+  </div>
+  <div class="hero-bar">
+    <div>
+      <h1>PT Health Assistant</h1>
+      <p>Ask about your claims, physiotherapy visits, deductible and what your policy covers.</p>
+    </div>
+    <div class="who" id="who" hidden><span id="whoName"></span><button class="secondary" id="logout">Sign out</button></div>
+  </div>
+</header>
+
+<main>
+  <section class="card login" id="login">
+    <h2>Who are you?</h2>
+    <div class="roles">
+      <div class="role">
+        <h3>I'm a member</h3>
+        <p>See your own claims, what was reimbursed, and what you can still use this year.</p>
+        <select id="memberSelect" aria-label="Choose a member"><option>Loading members…</option></select>
+        <button id="loginMember">Continue as member</button>
+      </div>
+      <div class="role">
+        <h3>I'm an employee</h3>
+        <p>Look up any member, check policies, and ask questions across all claims.</p>
+        <button id="loginEmployee">Continue as employee</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="chat">
+    <div class="messages" id="messages" aria-live="polite"></div>
+    <div class="suggestions" id="suggestions"></div>
+    <form class="ask" id="askForm">
+      <textarea id="question" placeholder="Type your question…" aria-label="Your question"></textarea>
+      <button type="submit" id="send">Send</button>
+    </form>
+    <div class="disclaimer">Prototype on synthetic data. Answers are generated by AI and may contain mistakes.</div>
+  </section>
+</main>
+
+<script>
+const SUGGEST = {
+  member: [
+    "How many physio visits do I have left this year?",
+    "How much of my deductible have I used?",
+    "Why was my last claim denied?",
+    "I need 6 more physio sessions. Will they be covered?",
+  ],
+  employee: [
+    "How many claims were denied in 2026, by category?",
+    "Which members have used up their physio visits this year?",
+    "Show the policy terms for Extra Care 2",
+    "Look up member M100015 and explain their physio claims",
+  ],
+};
+const $ = (id) => document.getElementById(id);
+
+function render(md) {
+  if (window.marked && window.DOMPurify) return DOMPurify.sanitize(marked.parse(md));
+  const div = document.createElement("div"); div.textContent = md; return div.innerHTML.replace(/\n/g, "<br>");
+}
+
+function addMessage(kind, content, extra) {
+  const el = document.createElement("div");
+  el.className = "msg " + kind;
+  if (kind === "user") el.textContent = content; else el.innerHTML = render(content);
+  if (extra) { const s = document.createElement("div"); s.className = "sources"; s.textContent = extra; el.appendChild(s); }
+  $("messages").appendChild(el);
+  $("messages").scrollTop = $("messages").scrollHeight;
+  return el;
+}
+
+async function api(path, body) {
+  const r = await fetch(path, { method: body ? "POST" : "GET", headers: { "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : undefined });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error || "Something went wrong");
+  return data;
+}
+
+async function loadMembers() {
+  try {
+    const members = await api("/api/members");
+    $("memberSelect").innerHTML = members.map(m => `<option value="${m.member_id}">${m.first_name} ${m.last_name} (${m.member_id}, ${m.city})</option>`).join("");
+  } catch (e) { $("memberSelect").innerHTML = "<option>Could not load members</option>"; }
+}
+
+async function signIn(role) {
+  const body = { role };
+  if (role === "member") body.member_id = $("memberSelect").value;
+  try {
+    const me = await api("/api/login", body);
+    $("login").style.display = "none"; $("chat").style.display = "block"; $("who").hidden = false;
+    $("whoName").textContent = role === "member" ? `Signed in as ${me.name}` : "Signed in as employee";
+    $("messages").innerHTML = "";
+    addMessage("bot", role === "member"
+      ? `Hi ${me.name.split(" ")[0]}! I can tell you about your claims, your deductible, your physiotherapy visits and what your policy covers. What would you like to know?`
+      : "Hello! You can ask me about any member, policy or claim, or for totals across all claims.");
+    $("suggestions").innerHTML = "";
+    SUGGEST[role].forEach(q => { const b = document.createElement("button"); b.type = "button"; b.textContent = q; b.onclick = () => ask(q); $("suggestions").appendChild(b); });
+    $("question").focus();
+  } catch (e) { alert(e.message); }
+}
+
+async function ask(q) {
+  q = (q || "").trim(); if (!q) return;
+  addMessage("user", q); $("question").value = "";
+  $("send").disabled = true;
+  const typing = addMessage("bot typing", "Looking that up…");
+  try {
+    const res = await api("/api/chat", { message: q });
+    typing.remove();
+    const used = [...new Set(res.tools_used.map(t => t.tool))];
+    addMessage("bot", res.answer, used.length ? "Checked: " + used.join(", ") : null);
+  } catch (e) { typing.remove(); addMessage("bot error", e.message); }
+  $("send").disabled = false; $("question").focus();
+}
+
+$("loginMember").onclick = () => signIn("member");
+$("loginEmployee").onclick = () => signIn("employee");
+$("logout").onclick = async () => { await api("/api/logout", {}); location.reload(); };
+$("askForm").onsubmit = (e) => { e.preventDefault(); ask($("question").value); };
+$("question").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask($("question").value); } });
+loadMembers();
+</script>
+</body>
+</html>

@@ -55,6 +55,16 @@ class ChatSession:
 
     def ask(self, question):
         """Send a question, run tool calls until Claude answers. Returns (answer_text, tools_used)."""
+        start = len(self.messages)
+        try:
+            return self._ask(question)
+        except Exception:
+            # Drop the half-finished turn so a failed request can't leave a tool call
+            # without its result in the history (which would break every later question).
+            del self.messages[start:]
+            raise
+
+    def _ask(self, question):
         self.messages.append({"role": "user", "content": question})
         tools_used = []
         for _ in range(MAX_TOOL_ROUNDS):

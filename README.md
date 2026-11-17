@@ -57,6 +57,13 @@ To regenerate the data (same result every time, seed 42):
 python data/generate_data.py
 ```
 
+## Test it
+
+```bash
+python tests/check_tools.py     # offline: checks the lookups against the data, no API key needed
+python tests/ask_examples.py    # live: asks Claude the example questions below and prints the answers
+```
+
 ## Example questions
 
 Member: "How many physio visits do I have left this year?", "Why was my last claim

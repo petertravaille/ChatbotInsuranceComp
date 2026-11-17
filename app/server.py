@@ -60,7 +60,11 @@ def chat():
     try:
         answer, tools_used = chat.ask(question)
     except anthropic.AuthenticationError:
-        return jsonify({"error": "The Anthropic API key is missing or invalid. Set ANTHROPIC_API_KEY."}), 500
+        return jsonify({"error": "The Anthropic API key is invalid. Check ANTHROPIC_API_KEY."}), 500
+    except TypeError as e:
+        if "authentication" not in str(e):
+            raise
+        return jsonify({"error": "No Anthropic API key found. Set ANTHROPIC_API_KEY and restart the server."}), 500
     except anthropic.RateLimitError:
         return jsonify({"error": "Too many requests right now, please try again in a minute."}), 429
     except anthropic.APIStatusError as e:
@@ -77,4 +81,7 @@ def logout():
 
 
 if __name__ == "__main__":
+    if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
+        print("Warning: ANTHROPIC_API_KEY is not set, so the chatbot can't answer yet "
+              "(unless you signed in with `ant auth login`).")
     app.run(host="127.0.0.1", port=int(os.environ.get("PORT", 5000)), debug=False)

@@ -76,7 +76,17 @@
 </header>
 
 <main>
-  <section class="card login" id="login">
+  <section class="card login" id="keyCard" style="display:none">
+    <h2>Step 1: connect to Claude</h2>
+    <p style="color:var(--muted);margin-top:0">Paste your Anthropic API key (it starts with <code>sk-ant-api</code>). You only need to do this once; it is saved on this computer only.</p>
+    <form id="keyForm" style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="password" id="keyInput" placeholder="sk-ant-api..." autocomplete="off" aria-label="API key" style="flex:1;min-width:220px;font:inherit;padding:10px;border:1px solid var(--line);border-radius:10px">
+      <button type="submit" id="keySave">Save key</button>
+    </form>
+    <p id="keyMsg" style="margin-bottom:0"></p>
+  </section>
+
+  <section class="card login" id="login" style="display:none">
     <h2>Who are you?</h2>
     <div class="roles">
       <div class="role">
@@ -186,6 +196,24 @@ $("loginEmployee").onclick = () => signIn("employee");
 $("logout").onclick = async () => { await api("/api/logout", {}); location.reload(); };
 $("askForm").onsubmit = (e) => { e.preventDefault(); ask($("question").value); };
 $("question").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask($("question").value); } });
+async function checkKey() {
+  try {
+    const st = await api("/api/key-status");
+    $("keyCard").style.display = st.has_key ? "none" : "block";
+    $("login").style.display = st.has_key ? "block" : "none";
+  } catch (e) { $("login").style.display = "block"; }
+}
+$("keyForm").onsubmit = async (e) => {
+  e.preventDefault();
+  $("keySave").disabled = true; $("keyMsg").style.color = "var(--muted)"; $("keyMsg").textContent = "Checking the key…";
+  try {
+    await api("/api/key", { key: $("keyInput").value });
+    $("keyInput").value = ""; $("keyMsg").textContent = "";
+    $("keyCard").style.display = "none"; $("login").style.display = "block";
+  } catch (err) { $("keyMsg").style.color = "#a3303b"; $("keyMsg").textContent = err.message; }
+  $("keySave").disabled = false;
+};
+checkKey();
 loadMembers();
 </script>
 </body>

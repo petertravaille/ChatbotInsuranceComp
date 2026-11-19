@@ -1,0 +1,178 @@
+<title>Chatbot Live Test Record</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: an audit record. Narrow reading column, summary figures first, then failures and fixes, then one entry per question. */
+:root {
+  --bg: #f5f7f6; --surface: #ffffff; --ink: #14302b; --muted: #55706a; --line: #d7e1dd;
+  --accent: #0d6b5c; --accent-soft: #e2f1ed;
+  --ok: #1b7a43; --ok-soft: #e3f4e8; --warn: #9a5b00; --warn-soft: #fbf0dc; --bad: #b42318; --bad-soft: #fde7e5;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1a18; --surface: #16231f; --ink: #e3eeea; --muted: #93aca5; --line: #2a3b36;
+  --accent: #5cc4ae; --accent-soft: #173a33;
+  --ok: #6fd39a; --ok-soft: #173826; --warn: #f0b354; --warn-soft: #3a2c12; --bad: #ff8a80; --bad-soft: #3d1c1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1a18; --surface: #16231f; --ink: #e3eeea; --muted: #93aca5; --line: #2a3b36;
+  --accent: #5cc4ae; --accent-soft: #173a33;
+  --ok: #6fd39a; --ok-soft: #173826; --warn: #f0b354; --warn-soft: #3a2c12; --bad: #ff8a80; --bad-soft: #3d1c1a; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--body); }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 40px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 44px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 18px; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 600 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+header { display: grid; gap: 14px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 15px; }
+.banner { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn); border-radius: 8px; padding: 12px 16px; font-weight: 600; }
+section { display: grid; gap: 16px; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.fig { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.fig b { font: 800 38px/1 var(--display); font-variant-numeric: tabular-nums; color: var(--accent); }
+.fig span { color: var(--muted); font-size: 15px; }
+ul.plain { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 68ch; }
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font: 600 12px/1.3 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.qlist { display: grid; gap: 14px; }
+.q { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.qhead { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.qnum { font: 600 13px/1 var(--mono); color: var(--muted); }
+.kind { font: 600 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.who { color: var(--muted); font-size: 14px; }
+.question { font: 700 19px/1.3 var(--display); }
+.expected { font-size: 15px; color: var(--muted); }
+.expected strong { color: var(--ink); }
+.verdicts { display: grid; gap: 6px; }
+.vrow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 14px; }
+.vrow .lbl { font: 600 12px/1 var(--mono); color: var(--muted); width: 120px; }
+.chip { display: inline-flex; gap: 5px; align-items: center; font: 600 13px/1 var(--body); padding: 5px 9px; border-radius: 999px; border: 1px solid transparent; }
+.chip.Correct { background: var(--ok-soft); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 30%, transparent); }
+.chip.Small { background: var(--warn-soft); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 35%, transparent); }
+.chip.Wrong { background: var(--bad-soft); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.overall { margin-left: auto; font: 700 13px/1 var(--mono); }
+.overall.muted { color: var(--muted); } .overall.ok { color: var(--ok); } .overall.warn { color: var(--warn); } .overall.bad { color: var(--bad); }
+details { border-top: 1px solid var(--line); padding-top: 10px; }
+summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 15px; }
+summary:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.answer { margin-top: 12px; display: grid; gap: 8px; min-width: 0; }
+.answer .ahead { font: 600 12px/1.4 var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.note { font-size: 14px; padding: 8px 12px; border-radius: 6px; background: var(--warn-soft); color: var(--ink); border-left: 3px solid var(--warn); }
+.note.okn { background: var(--ok-soft); border-left-color: var(--ok); }
+.md { font-size: 15px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; min-width: 0; }
+.md p, .md ul { margin: 0 0 8px; }
+.md table { font-size: 13px; width: auto; }
+.md th, .md td { padding: 5px 8px; white-space: nowrap; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tabs button { font: 600 13px/1 var(--body); padding: 7px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+footer { color: var(--muted); font-size: 14px; }
+@media (max-width: 520px) { .vrow .lbl { width: 100%; } .overall { margin-left: 0; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">PT Health Assistant · live test</div>
+    <h1>Chatbot Live Test Record</h1>
+    <p id="lede"></p>
+    <div class="meta" id="meta"></div>
+    <div class="banner" id="banner" hidden></div>
+  </header>
+
+  <section>
+    <h2>Result</h2>
+    <div class="figures" id="figures"></div>
+  </section>
+
+  <section>
+    <h2>How we tested</h2>
+    <ul class="plain">
+      <li><strong>20 test questions</strong>, written in advance with the right answer worked out from the synthetic claims and policy databases: facts, advice, rephrasings, trick questions (a year or package that doesn't exist), a privacy test, and employee questions.</li>
+      <li><strong>Each question asked 3 times</strong> to the live chatbot (the Python version with Claude), each time in a fresh conversation, because answers can vary between runs.</li>
+      <li><strong>Automatic checks</strong> on every answer: the key numbers and facts, plus Pete's house rules (no internal claim numbers, an Eigen risico column next to Status, and a full physio table for physio questions).</li>
+      <li><strong>Read by hand</strong>: every answer was also read and compared with the expected answer, to catch mistakes the automatic checks can't see.</li>
+      <li><strong>Fix and test again</strong>: every problem found was fixed, and the questions were run again (3 times each) until the API credit for the demo ran out partway through.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What went wrong and how it was fixed</h2>
+    <div class="tablebox"><table><thead><tr><th>Problem found</th><th>Fix</th></tr></thead><tbody id="fixes"></tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Every question, expected answer and actual answers</h2>
+    <p class="expected">Each answer was given a verdict after reading it: <span class="chip Correct">Correct</span> <span class="chip Small">Small slip</span> (main answer right, a detail wrong) <span class="chip Wrong">Wrong</span>. Open a question to read the chatbot's actual answers.</p>
+    <div class="qlist" id="qlist"></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script>
+const DATA = /*DATA*/null;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md = s => (window.marked ? marked.parse(esc(s).replace(/&gt;/g, ">")) : "<pre>" + esc(s) + "</pre>");
+const rounds = DATA.rounds, first = rounds[0], last = rounds[rounds.length - 1];
+const countRuns = r => r.tests.reduce((a, t) => a + t.runs.length, 0);
+const count = (r, v) => r.tests.reduce((a, t) => a + t.runs.filter(x => x.verdict === v).length, 0);
+const fullQ = r => r.tests.filter(t => t.runs.length && t.runs.every(x => x.verdict === "Correct")).length;
+const expectedRuns = first.tests.length * 3;
+const lastDone = countRuns(last), lastComplete = lastDone === expectedRuns;
+const label = r => r.round === 1 ? "Before fixes" : (r === last ? "After fixes" : "Round " + r.round);
+
+document.getElementById("lede").textContent =
+  `${first.tests.length} questions, each asked 3 times to the live chatbot, ${rounds.reduce((a, r) => a + countRuns(r), 0)} answers in total, every one checked automatically and read by hand.`;
+document.getElementById("meta").innerHTML = rounds.map(r => `<span>${esc(label(r))}: ${esc(r.date)}</span>`).join("") +
+  `<span>Synthetic (fake) data only</span>`;
+if (!lastComplete && rounds.length > 1) {
+  const b = document.getElementById("banner"); b.hidden = false;
+  const cov = last.tests.filter(t => t.runs.length).map(t => "Q" + t.n + (t.runs.length < 3 ? ` (${t.runs.length} of 3 runs)` : "")).join(", ");
+  b.textContent = `The test after fixes is partial: ${lastDone} of ${expectedRuns} answers ran before the API credit for this demo ran out, and it was decided not to buy more. It covers ${cov}. Questions 14 to 20 were tested once, before the fixes.`;
+}
+const figs = [];
+if (rounds.length > 1) figs.push([`${count(last, "Correct")}/${lastDone}`, `answers correct after fixes${lastComplete ? "" : " (so far)"}`]);
+if (rounds.length > 1) figs.push([`${fullQ(last)}/${last.tests.filter(t => t.runs.length).length}`, `questions correct on every run after fixes`]);
+figs.push([`${count(first, "Correct")}/${countRuns(first)}`, `answers correct before fixes (${count(first, "Small slip")} small slips, ${count(first, "Wrong")} wrong)`]);
+figs.push([`0`, `internal claim numbers shown, in any answer`]);
+document.getElementById("figures").innerHTML = figs.map(([b, s]) => `<div class="fig"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("");
+document.getElementById("fixes").innerHTML = DATA.fixes.map(([p, f]) => `<tr><td>${esc(p)}</td><td>${esc(f)}</td></tr>`).join("");
+
+const cls = v => v === "Correct" ? "Correct" : v === "Small slip" ? "Small" : "Wrong";
+const mark = v => v === "Correct" ? "✓" : v === "Small slip" ? "!" : "✗";
+document.getElementById("qlist").innerHTML = first.tests.map((t, i) => {
+  const per = rounds.map(r => ({r, runs: r.tests[i].runs}));
+  const fin = per[per.length - 1].runs;
+  const overall = !fin.length ? ["muted", "TESTED BEFORE FIXES ONLY"] : fin.every(x => x.verdict === "Correct") ? ["ok", "PASS"] :
+    fin.some(x => x.verdict === "Wrong") ? ["bad", "FAIL"] : ["warn", "PASS WITH SLIP"];
+  const vrows = per.map(({r, runs}) => `<div class="vrow"><span class="lbl">${esc(label(r))}</span>` +
+    (runs.length ? runs.map(x => `<span class="chip ${cls(x.verdict)}">${mark(x.verdict)} Run ${x.attempt}</span>`).join("") :
+      `<span class="who">not rerun (credit ran out)</span>`) + `</div>`).join("");
+  const answers = per.filter(p => p.runs.length).map(({r, runs}) => runs.map(x =>
+    `<div class="answer" data-round="${r.round}"><div class="ahead"><span>${esc(label(r))} · run ${x.attempt}</span><span>${x.seconds}s</span>` +
+    (x.corrected ? `<span>recheck round used</span>` : "") + (x.blocked ? `<span>privacy guard applied</span>` : "") + `</div>` +
+    (x.note ? `<div class="note ${x.verdict === "Correct" ? "okn" : ""}">${esc(x.note)}</div>` : "") +
+    `<div class="md">${md(x.answer)}</div></div>`).join("")).join("");
+  return `<article class="q"><div class="qhead"><span class="qnum">Q${t.n}</span><span class="kind">${esc(t.kind)}</span>` +
+    `<span class="who">Asked as ${esc(t.as_name)}</span><span class="overall ${overall[0]}">${overall[1]}</span></div>` +
+    `<div class="question">${esc(t.question)}</div>` +
+    `<div class="expected"><strong>Expected:</strong> ${esc(t.expected)}</div>` +
+    `<div class="verdicts">${vrows}</div>` +
+    `<details><summary>Read the actual answers</summary>${answers}</details></article>`;
+}).join("");
+document.getElementById("foot").textContent =
+  "Raw results (every answer, the tools the chatbot used and each automatic check) are saved in the code repository under tests/results.";
+</script>

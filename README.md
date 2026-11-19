@@ -84,3 +84,11 @@ denied?", "I need 6 more physio sessions. Will they be covered?"
 
 Employee: "Which members have used up their physio visits this year?", "Show the
 policy terms for Extra Care 2", "Explain the physio claims of member M100015".
+
+## Testing
+
+- `python tests/check_tools.py` checks the database tools against the raw data (no API key needed).
+- `python tests/expected.py` prints the 20 test questions with the expected answers worked out from the data.
+- `python tests/live_test.py` asks the live chatbot all 20 questions (3 times each by default), checks every
+  answer against the data and against the house rules (no internal claim ids, an Eigen risico column next to
+  Status, a full physio table for physio questions), and saves the results in `tests/results/`.

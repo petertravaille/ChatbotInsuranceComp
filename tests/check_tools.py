@@ -3,6 +3,7 @@
 Run:  python tests/check_tools.py
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -23,7 +24,15 @@ for (mid,) in con.execute("SELECT member_id FROM members"):
 
 # Members only ever see their own data; employees can't write.
 assert json.loads(execute_tool("get_member_overview", {"member_id": "M100002"}, "member", "M100001")[0])["member"]["member_id"] == "M100001"
-assert execute_tool("get_claim", {"claim_id": "C100850"}, "member", "M100001")[1]  # someone else's claim
+# A member asking for another member's visit date only ever gets their own claims (or none).
+other = con.execute("SELECT service_date FROM claims WHERE member_id = 'M100002' AND service_date NOT IN "
+                    "(SELECT service_date FROM claims WHERE member_id = 'M100001') LIMIT 1").fetchone()[0]
+assert execute_tool("get_claim", {"member_id": "M100002", "visit_date": other}, "member", "M100001")[1]
+# Claim ids never appear in what the member-facing tools return.
+for tool, args in (("search_claims", {}), ("physio_sessions", {}), ("get_member_overview", {})):
+    out = execute_tool(tool, args, "member", "M100015")[0]
+    assert "claim_id" not in out and not re.search(r"\bC\d{6}\b", out), tool
+assert execute_tool("search_claims", {"member_id": "M999999"}, "employee")[1]  # unknown member is an error
 assert execute_tool("run_sql", {"query": "SELECT 1"}, "member", "M100001")[1]
 assert execute_tool("run_sql", {"query": "DELETE FROM claims"}, "employee")[1]
 assert execute_tool("run_sql", {"query": "SELECT 1; DROP TABLE claims"}, "employee")[1]

@@ -35,7 +35,7 @@
   button:disabled { opacity: .6; cursor: default; }
   .role button { margin-top: 10px; width: 100%; }
   #chat { display: none; }
-  .messages { display: flex; flex-direction: column; gap: 12px; min-height: 300px; max-height: calc(100vh - 360px); overflow-y: auto; padding: 4px; }
+  .messages { display: flex; flex-direction: column; gap: 12px; min-height: 300px; max-height: 60vh; overflow-y: auto; padding: 4px; }
   .msg { max-width: 85%; padding: 12px 14px; border-radius: 14px; line-height: 1.45; overflow-x: auto; }
   .msg.user { align-self: flex-end; background: var(--user); color: var(--user-text); border-bottom-right-radius: 4px; }
   .msg.bot { align-self: flex-start; background: var(--bot); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
@@ -50,6 +50,24 @@
   .suggestions button { background: #e5f3f1; color: var(--brand-dark); font-size: .85rem; padding: 6px 12px; border-radius: 999px; }
   form.ask { display: flex; gap: 8px; margin-top: 12px; }
   form.ask textarea { resize: none; height: 46px; }
+  #overview { display: none; margin-bottom: 14px; }
+  .ov-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .ov-head h2 { margin: 0; font-size: 1.1rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filters select { width: auto; padding: 7px 10px; font-size: .9rem; }
+  .summary { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .88rem; color: var(--muted); margin-bottom: 10px; }
+  .summary b { color: var(--text); }
+  .tablebox { overflow: auto; max-height: 420px; border: 1px solid var(--line); border-radius: 10px; }
+  table.ov { border-collapse: collapse; width: 100%; font-size: .86rem; font-variant-numeric: tabular-nums; }
+  table.ov th, table.ov td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+  table.ov th { position: sticky; top: 0; background: #eef5f4; }
+  table.ov .num { text-align: right; }
+  .pill { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: .78rem; }
+  .pill.paid { background: #dff3ea; color: #1d7a55; } .pill.partially_paid { background: #fbefd6; color: #8a5a00; }
+  .pill.denied { background: #fbe3e5; color: #a8323d; } .pill.pending { background: #eef5f4; color: #5d6b73; }
+  .empty { padding: 18px; color: var(--muted); text-align: center; }
+  .check { margin-top: 8px; font-size: .8rem; padding: 6px 10px; border-radius: 8px; }
+  .check.good { background: #dff3ea; color: #1d7a55; } .check.warn { background: #fbefd6; color: #8a5a00; }
   .disclaimer { font-size: .75rem; color: var(--muted); margin-top: 10px; text-align: center; }
   @media (max-width: 640px) {
     .hero-images { grid-template-columns: 1fr; } .hero-images img:not(:first-child) { display: none; }
@@ -103,6 +121,24 @@
     </div>
   </section>
 
+  <section class="card" id="overview">
+    <div class="ov-head">
+      <h2 id="ovTitle">Your claims</h2>
+      <div class="filters">
+        <select id="ovMember" aria-label="Member" hidden></select>
+        <select id="ovYear" aria-label="Year"><option value="2026">2026</option><option value="2025">2025</option></select>
+        <select id="ovCat" aria-label="Type of care"><option value="">All types of care</option><option value="physiotherapy">Physiotherapy only</option></select>
+        <select id="ovStatus" aria-label="Status"><option value="">All statuses</option><option value="paid">Paid</option><option value="partially_paid">Partially paid</option><option value="denied">Denied</option><option value="pending">Pending</option></select>
+      </div>
+    </div>
+    <div class="summary" id="ovSummary"></div>
+    <p class="disclaimer" style="text-align:left;margin:0 0 8px">Straight from the claims data. Hover over a status to see the reason.</p>
+    <div class="tablebox"><table class="ov">
+      <thead><tr><th>Visit date</th><th>Type of care</th><th>Provider</th><th>Location</th><th>Status</th><th class="num">Eigen risico €</th><th class="num">Claimed €</th><th class="num">Reimbursed €</th><th class="num" id="payHead">You pay €</th></tr></thead>
+      <tbody id="ovBody"></tbody>
+    </table></div>
+  </section>
+
   <section class="card" id="chat">
     <div class="messages" id="messages" aria-live="polite"></div>
     <div class="suggestions" id="suggestions"></div>
@@ -136,11 +172,12 @@ function render(md) {
   const div = document.createElement("div"); div.textContent = md; return div.innerHTML.replace(/\n/g, "<br>");
 }
 
-function addMessage(kind, content, extra) {
+function addMessage(kind, content, extra, checks) {
   const el = document.createElement("div");
   el.className = "msg " + kind;
   if (kind === "user") el.textContent = content; else el.innerHTML = render(content);
   if (extra) { const s = document.createElement("div"); s.className = "sources"; s.textContent = extra; el.appendChild(s); }
+  for (const c of checks || []) { const d = document.createElement("div"); d.className = "check " + c.cls; d.textContent = c.text; el.appendChild(d); }
   $("messages").appendChild(el);
   $("messages").scrollTop = $("messages").scrollHeight;
   return el;
@@ -166,6 +203,14 @@ async function signIn(role) {
   try {
     const me = await api("/api/login", body);
     $("login").style.display = "none"; $("chat").style.display = "block"; $("who").hidden = false;
+    ME = { role, member_id: me.member_id };
+    $("overview").style.display = "block"; $("ovMember").hidden = role === "member";
+    if (role !== "member" && !$("ovMember").options.length) {
+      const all = await api("/api/members?limit=1000");
+      $("ovMember").innerHTML = all.map(m => `<option value="${m.member_id}">${esc(m.first_name + " " + m.last_name)} (${m.member_id})</option>`).join("");
+      $("ovMember").value = "M100015";
+    }
+    renderOverview();
     $("whoName").textContent = role === "member" ? `Signed in as ${me.name}` : "Signed in as employee";
     $("messages").innerHTML = "";
     addMessage("bot", role === "member"
@@ -186,10 +231,41 @@ async function ask(q) {
     const res = await api("/api/chat", { message: q });
     typing.remove();
     const used = [...new Set(res.tools_used.map(t => t.tool))];
-    addMessage("bot", res.answer, used.length ? "Checked: " + used.join(", ") : null);
+    const checks = [];
+    const ck = res.checks || {};
+    if (ck.privacy_blocked) checks.push({ cls: "warn", text: "Privacy guard: the answer mentioned another member, so it was blocked." });
+    if (ck.numbers) checks.push({ cls: ck.numbers.ok ? "good" : "warn", text: (ck.numbers.ok ? "✓ " : "⚠ ") + ck.numbers.message });
+    addMessage("bot", res.answer, used.length ? "Checked: " + used.join(", ") : null, checks);
   } catch (e) { typing.remove(); addMessage("bot error", e.message); }
   $("send").disabled = false; $("question").focus();
 }
+
+let ME = null;
+const STATUS_LABEL = { paid: "Paid", partially_paid: "Partially paid", denied: "Denied", pending: "Pending" };
+const num = (x) => x == null ? "–" : Number(x).toLocaleString("nl-NL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const esc = (t) => { const d = document.createElement("div"); d.textContent = t == null ? "" : String(t); return d.innerHTML; };
+async function renderOverview() {
+  const params = new URLSearchParams({ year: $("ovYear").value });
+  if (ME.role !== "member") params.set("member_id", $("ovMember").value);
+  let data;
+  try { data = await api("/api/claims?" + params); }
+  catch (e) { $("ovBody").innerHTML = `<tr><td colspan="9" class="empty">${esc(e.message)}</td></tr>`; return; }
+  $("ovTitle").textContent = ME.role === "member" ? "Your claims" : `Claims of ${data.member.name}`;
+  $("payHead").textContent = ME.role === "member" ? "You pay €" : "Member pays €";
+  const s = data.summary;
+  $("ovSummary").innerHTML = s ? `<span>Eigen risico used <b>€ ${num(s.eigen_risico_used_eur)}</b> of € ${num(s.eigen_risico_total_eur)}</span>` +
+    `<span>Physio sessions used <b>${s.physio_sessions_used}</b>${s.physio_sessions_covered ? ` · ${s.physio_sessions_covered} covered by ${esc(s.physio_package)}` : " (no physio cover)"}</span>` +
+    `<span>Policies <b>${esc(s.policies.join(", "))}</b></span>` : "";
+  const st = $("ovStatus").value, cat = $("ovCat").value;
+  const list = data.claims.filter(c => (!st || c.status === st) && (!cat || c.care_category === cat));
+  $("ovBody").innerHTML = list.length ? list.map(c => {
+    const care = c.type_of_care + (c.physio_visits ? ` (${c.physio_visits} sessions)` : "");
+    return `<tr><td>${esc(c.visit_date)}</td><td>${esc(care)}</td><td>${esc(c.provider)}</td><td>${esc(c.location)}</td>` +
+      `<td><span class="pill ${c.status}" title="${esc(c.reason)}">${STATUS_LABEL[c.status]}</span></td><td class="num">${num(c.eigen_risico_eur)}</td>` +
+      `<td class="num">${num(c.claimed_eur)}</td><td class="num">${num(c.reimbursed_eur)}</td><td class="num">${num(c.member_pays_eur)}</td></tr>`;
+  }).join("") : `<tr><td colspan="9" class="empty">No claims for this selection.</td></tr>`;
+}
+["ovMember", "ovYear", "ovStatus", "ovCat"].forEach(i => $(i).addEventListener("change", renderOverview));
 
 $("loginMember").onclick = () => signIn("member");
 $("loginEmployee").onclick = () => signIn("employee");

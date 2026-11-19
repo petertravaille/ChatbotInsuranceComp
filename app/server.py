@@ -19,6 +19,46 @@ app.secret_key = os.environ.get("FLASK_SECRET_KEY", secrets.token_hex(16))
 # Conversations live in memory; fine for a local prototype.
 CHATS: dict[str, ChatSession] = {}
 
+# The API key can be pasted into the web page; it is kept in .anthropic_key next to the code
+# (git-ignored) so it only has to be entered once.
+KEY_FILE = Path(__file__).resolve().parent.parent / ".anthropic_key"
+if not os.environ.get("ANTHROPIC_API_KEY") and KEY_FILE.exists():
+    saved = KEY_FILE.read_text(encoding="utf-8").strip()
+    if saved:
+        os.environ["ANTHROPIC_API_KEY"] = saved
+
+
+def has_key():
+    return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
+
+
+@app.get("/api/key-status")
+def key_status():
+    return jsonify({"has_key": has_key()})
+
+
+@app.post("/api/key")
+def set_key():
+    key = (request.get_json(force=True).get("key") or "").strip().strip('"').strip("'")
+    if not key.startswith("sk-ant-api"):
+        return jsonify({"error": "That doesn't look like an API key. It should start with sk-ant-api."}), 400
+    try:
+        anthropic.Anthropic(api_key=key).models.list(limit=1)  # free check that the key is accepted
+    except anthropic.AuthenticationError:
+        return jsonify({"error": "Anthropic did not accept this key. Check you copied all of it, "
+                                 "or create a new one."}), 400
+    except anthropic.PermissionDeniedError:
+        return jsonify({"error": "This key isn't allowed to use the API. Create a new key on platform.claude.com."}), 400
+    except anthropic.APIConnectionError:
+        return jsonify({"error": "Could not reach Anthropic. Check your internet connection."}), 502
+    os.environ["ANTHROPIC_API_KEY"] = key
+    try:
+        KEY_FILE.write_text(key, encoding="utf-8")
+        os.chmod(KEY_FILE, 0o600)
+    except OSError:
+        pass  # still works for this run
+    return jsonify({"ok": True})
+
 
 @app.get("/")
 def index():
@@ -36,6 +76,8 @@ def login():
     role = data.get("role")
     if role not in ("member", "employee"):
         return jsonify({"error": "role must be member or employee"}), 400
+    if not has_key():
+        return jsonify({"error": "Please add your Anthropic API key first."}), 400
     member_id = name = None
     if role == "member":
         member_id = data.get("member_id")
@@ -68,6 +110,9 @@ def chat():
     except anthropic.RateLimitError:
         return jsonify({"error": "Too many requests right now, please try again in a minute."}), 429
     except anthropic.APIStatusError as e:
+        if "credit balance" in str(e.message).lower():
+            return jsonify({"error": "Your Anthropic account has no credit yet. Add some under Billing on "
+                                     "platform.claude.com, then ask again."}), 402
         return jsonify({"error": f"Claude API error ({e.status_code}): {e.message}"}), 502
     except anthropic.APIConnectionError:
         return jsonify({"error": "Could not reach the Claude API. Check your internet connection."}), 502
@@ -82,6 +127,5 @@ def logout():
 
 if __name__ == "__main__":
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
-        print("Warning: ANTHROPIC_API_KEY is not set, so the chatbot can't answer yet "
-              "(unless you signed in with `ant auth login`).")
+        print("No API key yet: paste it into the page that opens in your browser.")
     app.run(host="127.0.0.1", port=int(os.environ.get("PORT", 5000)), debug=False)

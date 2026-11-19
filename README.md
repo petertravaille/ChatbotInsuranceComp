@@ -45,9 +45,11 @@ EUR 100–500. GP care and supplementary cover don't count towards the deductibl
 1. Install [Python](https://www.python.org/downloads/) 3.10 or newer (on Windows, tick "Add to PATH").
 2. Download this repository (green **Code** button, then **Download ZIP**) and unzip it.
 3. Double-click **start-mac.command** (Mac) or **start-windows.bat** (Windows).
-   The first time, it sets things up and asks for your Anthropic API key, which it keeps
-   in a local `.anthropic_key` file. Your browser then opens the demo.
+   The first time, it sets things up (about a minute) and opens the demo in your browser.
    On a Mac, if it says the file can't be opened, right-click it and choose **Open**.
+4. Paste your Anthropic API key (starts with `sk-ant-api`) into the page and click **Save key**.
+   It is checked straight away and saved on your computer only (in `.anthropic_key`),
+   so you only do this once.
 
 Close the window to stop the demo.
 

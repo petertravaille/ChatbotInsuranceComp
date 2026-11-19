@@ -42,7 +42,7 @@ def rule_checks(t, answer):
     """Pete's house rules, checked on every answer."""
     checks = [("no internal claim ids (Cxxxxxx)", not CLAIM_ID.search(answer))]
     heads = table_header(answer)
-    claim_tables = [h for h in heads if "status" in h]
+    claim_tables = [h for h in heads if "status" in h and "visit date" in h]  # lists of claims, not summaries
     if claim_tables:
         ok = all("eigen risico" in h and h.index("eigen risico") == h.index("status") + 1 for h in claim_tables)
         checks.append(("claim table has Eigen risico next to Status", ok))
@@ -62,11 +62,15 @@ def run_one(t, attempt):
             answer, tools = chat.ask(t["question"])
             break
         except Exception as e:  # network hiccup or overload: back off and retry
-            if tries == 3:
+            if "credit balance" in str(e) or tries == 3:  # no point retrying when the account is out of credit
                 answer, tools = f"ERROR: {e}", []
+                break
             time.sleep(5 * (tries + 1))
     checks = [(label, bool(fn(answer))) for label, fn in t["checks"]] + rule_checks(t, answer)
+    nums = chat.last_checks.get("numbers") if chat.last_checks else None
     return {"n": t["n"], "attempt": attempt, "answer": answer, "seconds": round(time.time() - started, 1),
+            "number_check": nums and nums["message"], "self_corrected": chat.corrected_numbers,
+            "privacy_blocked": chat.last_checks.get("privacy_blocked") if chat.last_checks else None,
             "tools": [x["tool"] for x in tools], "checks": [{"check": c, "ok": ok} for c, ok in checks],
             "passed": all(ok for _, ok in checks)}
 

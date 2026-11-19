@@ -68,6 +68,31 @@ def numbers_in(text):
     return out
 
 
+def column_totals(answer):
+    """Sums of each numeric column in the answer's Markdown tables (data rows only, not a bold total row).
+
+    A total that the answer adds up itself (for example "202 denied claims" or a **Total** row) is then
+    accepted as worked out from the data, as long as the rows it adds up were found in the data.
+    """
+    totals = set()
+    rows = [ln.strip().strip("|").split("|") for ln in answer.splitlines() if ln.strip().startswith("|")]
+    table = []
+    for row in rows + [None]:
+        if row is not None and not all(re.fullmatch(r"\s*:?-{2,}:?\s*", c) for c in row):
+            if not any("**" in c for c in row):
+                table.append(row)
+            continue
+        if row is None or table:
+            for col in zip(*[r for r in table if len(r) == len(table[0])]):
+                vals = [numbers_in(c) for c in col]
+                if any(vals):
+                    totals.add(round(sum(v[0] for v in vals if v) * 100))
+            if row is None:
+                break
+        table = []
+    return totals
+
+
 def number_check(answer, tool_outputs):
     """Compare the numbers in an answer with the tool data.
 
@@ -88,7 +113,7 @@ def number_check(answer, tool_outputs):
         for m in re.finditer(r"-?\d+(?:\.\d+)?", out if isinstance(out, str) else json.dumps(out)):
             found.add(round(float(m.group(0)) * 100))
     base = list(found)[:400]
-    derived = {a + b for a in base for b in base} | {a - b for a in base for b in base}
+    derived = {a + b for a in base for b in base} | {a - b for a in base for b in base} | column_totals(answer)
     direct, calc, missing = [], [], []
     for n in nums:
         k = round(n * 100)

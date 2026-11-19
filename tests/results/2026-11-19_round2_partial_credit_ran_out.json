@@ -1,0 +1,1931 @@
+{
+  "date": "2026-11-19 16:18 UTC",
+  "runs_per_question": 3,
+  "tests": [
+    {
+      "n": 1,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "How many physio sessions have I used this year?",
+      "expected": "30 sessions over 10 claims (4 of them in a claim still pending), with a full table of every physio claim.",
+      "runs": [
+        {
+          "n": 1,
+          "attempt": 1,
+          "answer": "So far in 2026 you've had **30 physiotherapy sessions**. 26 of them have been assessed, and the other 4 are in 2 claims that are still pending. You've used all **18 sessions** covered by your Extra Care 2 package. However, you have a chronic indication, so your basic insurance covers sessions from the 21st onwards. That means you can still get covered physio this year.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals:** 30 sessions. Claimed EUR 1,196.00. For the claims already assessed, we reimbursed EUR 953.00 and you paid EUR 79.00.\n\n**Sessions used compared with your cover**\n- **Extra Care 2:** you've used all 18 of 18 covered sessions, so 0 are left. Sessions 1\u201318 were paid from this package.\n- **Sessions 19 and 20 weren't covered.** Your package limit had been reached, and basic insurance only starts paying from the 21st session. That's why you paid EUR 39.00 for one session on 16 Sep and EUR 40.00 for one session on 5 Oct.\n- **Basic insurance (chronic indication):** this pays from session 21. Sessions 21\u201326, from 5 Oct and 18 Oct, were paid this way. Your 2 pending claims (29 Oct and 12 Nov, sessions 27\u201330) fall into this range as well.\n- **Eigen risico (deductible):** you've used all of your EUR 635.00 for 2026, which is the mandatory EUR 385.00 plus your voluntary EUR 250.00. As a result, nothing more from basic-insurance physio will be charged to your deductible this year.\n\nThe 2 pending claims haven't been assessed yet. The insurer makes the final decision on them.",
+          "seconds": 19.3,
+          "number_check": "Number check: all 32 numbers come from the data (5 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": true
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": true
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 1,
+          "attempt": 2,
+          "answer": "**So far this year you've used 30 physiotherapy sessions.** 26 have been assessed and 4 are still pending. All 18 sessions your Extra Care 2 package covers have been used. Because your condition is on the chronic list, basic insurance has been paying for your sessions from the 21st session of the year onward.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Sessions used compared with your cover**\n- **Total used:** 30 sessions (2 + 4 + 3 + 4 + 4 + 2 + 3 + 4 + 2 + 2). 26 have been assessed and 4 are pending.\n- **Extra Care 2 (maximum 18 per year):** all 18 sessions are used, so **0 are left**.\n- **The gap between the two covers:** Your 18th session was paid on 16 Sep. Session 19 that same day and session 20 on 5 Oct came after your package ran out but before basic insurance starts at session 21. These were the only sessions not covered, so you paid EUR 39.00 and EUR 40.00 for them.\n- **Basic insurance (chronic list, from session 21):** Sessions 21 and 22 on 5 Oct and sessions 23 to 26 on 18 Oct were paid in full.\n\n**Totals for your 8 assessed claims (pending claims not included):**\n- **Claimed:** EUR 1,032.00 (76 + 168 + 114 + 164 + 152 + 78 + 120 + 160)\n- **Reimbursed:** EUR 953.00 (76 + 168 + 114 + 164 + 152 + 39 + 80 + 160)\n- **You paid:** EUR 79.00 (39 + 40). This matches the gap between the two: EUR 1,032.00 \u2212 EUR 953.00 = EUR 79.00.\n\nYour two pending claims, on 29 Oct and 12 Nov at Praktijk voor Fysiotherapie Den Haag, are each for EUR 82.00 and come after session 21. Under your chronic-list cover, basic insurance would normally pay for them. The insurer still has to make the final decision on both claims.",
+          "seconds": 31.1,
+          "number_check": "Number check: 1032 not found in the data that was looked up. Check these against the claims table.",
+          "self_corrected": [
+            1032.0
+          ],
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": true
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": true
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 1,
+          "attempt": 3,
+          "answer": "**You've used 30 physiotherapy sessions in 2026.** 26 of them have been assessed, and the other 4 are in 2 claims that are still pending.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals**\n- **Sessions:** 2 + 4 + 3 + 4 + 4 + 2 + 3 + 4 + 2 + 2 = 30.\n- **8 claims already assessed:**\n  - Claimed: 76 + 168 + 114 + 164 + 152 + 78 + 120 + 160 = EUR 1,032.00\n  - Reimbursed: 76 + 168 + 114 + 164 + 152 + 39 + 80 + 160 = EUR 953.00\n  - You paid: 39 + 40 = EUR 79.00\n  - Check: EUR 953.00 + EUR 79.00 = EUR 1,032.00.\n- **Including the 2 pending claims:** EUR 1,032.00 + EUR 82.00 + EUR 82.00 = EUR 1,196.00 claimed.\n\n**How your sessions are covered**\n- **Supplementary package (Extra Care 2):** This covers up to 18 sessions a year. You reached that limit with your 18th session, which was part of your visit on 16 Sep 2026.\n- **Gap between session 18 and session 21:** Your condition is on the chronic list, so basic insurance pays for physiotherapy from your 21st session of the year. Sessions 19 and 20 fell in between and weren't covered, which is why you paid EUR 39.00 for 16 Sep and EUR 40.00 for 5 Oct.\n- **Sessions 21 onwards:** These are covered by basic insurance, so you have 0 supplementary sessions left. Sessions 21 to 26 were paid in full.\n\n**Your 2 pending claims (29 Oct and 12 Nov 2026):** These are sessions 27 to 30, so they would normally fall under basic insurance because of your chronic indication. They haven't been assessed yet, though, and the insurer makes the final decision.",
+          "seconds": 28.1,
+          "number_check": "Number check: 1032 not found in the data that was looked up. Check these against the claims table.",
+          "self_corrected": [
+            1032.0
+          ],
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": true
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": true
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "How many covered physio sessions do I have left?",
+      "expected": "0 left under Extra Care 2 (max 18, 30 used). Should mention the chronic indication: basic insurance covers sessions from the 21st.",
+      "runs": [
+        {
+          "n": 2,
+          "attempt": 1,
+          "answer": "**You have no sessions left on your Extra Care 2 package. You've used all 18 for 2026.** Because you have a chronic indication, though, your basic insurance (Basic Care Free Choice) covers physio from your 21st session of the year, with no maximum number of sessions. You're already past that point, so further physio sessions in 2026 should be covered under your basic insurance.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals:** You've claimed 30 sessions in total. These sums add up the rows above:\n- **Decided claims (30 Jun to 18 Oct):**\n  - Claimed: 76.00 + 168.00 + 114.00 + 164.00 + 152.00 + 78.00 + 120.00 + 160.00 = **EUR 1,032.00**\n  - Reimbursed: 76.00 + 168.00 + 114.00 + 164.00 + 152.00 + 39.00 + 80.00 + 160.00 = **EUR 953.00**\n  - You paid: 39.00 + 40.00 = **EUR 79.00**\n  - Check: 953.00 + 79.00 = 1,032.00\n- **Pending claims:** 82.00 + 82.00 = **EUR 164.00**\n\n**How your sessions were covered**\n- **Sessions 1\u201318 (Extra Care 2):** All 18 sessions in your package are used, so you have 0 left. The 18th session was in your 16 Sep visit.\n- **Sessions 19\u201320 (not covered):** These sessions fall between the end of your package and the start of basic cover. That's why you paid EUR 39.00 for your 16 Sep visit and EUR 40.00 for your 5 Oct visit.\n- **Session 21 onwards (basic insurance):** These sessions are covered at 100%. Basic insurance normally uses your deductible (eigen risico). However, your total deductible of EUR 635.00 (EUR 385.00 mandatory plus EUR 250.00 voluntary) is already fully used for 2026. That's why your 18 Oct visit was fully reimbursed.\n\n**What this means for you**\n- Your two pending claims (29 Oct and 12 Nov, sessions 27\u201330) fall under basic insurance. Based on the rules, they should be fully reimbursed, but they haven't been assessed yet.\n- For any more sessions in 2026, you shouldn't have to pay anything yourself, as long as your physio stays part of treatment for your condition on the chronic list.\n- On 1 January 2027 the count starts again from session 1, and your deductible resets too.\n\nThe insurer makes the final decision when it assesses each claim.",
+          "seconds": 33.2,
+          "number_check": "Number check: 1032 not found in the data that was looked up. Check these against the claims table.",
+          "self_corrected": [
+            1032.0
+          ],
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "get_member_overview",
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "says 18 maximum",
+              "ok": true
+            },
+            {
+              "check": "says 0 / none left",
+              "ok": true
+            },
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 2,
+          "attempt": 2,
+          "answer": "You have **no sessions left under your Extra Care 2 package**. All 18 covered sessions for 2026 have been used. Because you have a **chronic indication**, though, your basic insurance (Basic Care Free Choice) is now paying for your physio. It covers sessions from the 21st of the year onward, and there's no maximum number of visits.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals:** 30 sessions, with EUR 1,196.00 claimed. For the claims already decided, EUR 953.00 was reimbursed and you paid EUR 79.00.\n\n**How your sessions are covered**\n- **Extra Care 2:** Sessions 1 to 18 were covered. All 18 are now used, so you have **0 left**.\n- **Sessions 19 and 20 weren't covered.** Your package limit had been reached, and basic insurance only starts at the 21st session. That's why you paid EUR 39.00 for your visit on 16 Sep at Fysio & Sport Den Haag and EUR 40.00 for your visit on 5 Oct at Praktijk voor Fysiotherapie Den Haag.\n- **From session 21, your basic insurance pays 100%.** There's no limit on the number of visits, but the deductible (eigen risico) applies. Your full deductible of EUR 635.00 is already used up (EUR 385.00 mandatory plus EUR 250.00 voluntary). So any further physio sessions in 2026 shouldn't cost you anything for the deductible.\n\n**Still waiting:** Your claims for 29 Oct and 12 Nov at Praktijk voor Fysiotherapie Den Haag (4 sessions, EUR 164.00 in total) are still being assessed. They fall under basic insurance, but the insurer makes the final decision.\n\nOn 1 January 2027 your Extra Care 2 sessions start again from zero.",
+          "seconds": 17.8,
+          "number_check": "Number check: all 32 numbers come from the data (3 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says 18 maximum",
+              "ok": true
+            },
+            {
+              "check": "says 0 / none left",
+              "ok": true
+            },
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 2,
+          "attempt": 3,
+          "answer": "**You have no sessions left in your Extra Care 2 package for 2026. You've used all 18. Because your condition is on the chronic list, your basic insurance now pays for your physio. It started paying from your 21st session this year, and the basic cover has no visit limit.**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Sessions used:** 30 in total, including 4 in claims that are still pending. Your Extra Care 2 maximum is 18 sessions, so you have **0** left there. The pending sessions are counted as if they'll be paid.\n\n**How your sessions were covered:**\n- **Sessions 1\u201318:** paid by Extra Care 2. Session 18 was part of your visit on 16 Sep.\n- **Sessions 19 and 20:** not covered by either insurance, so you paid for them yourself:\n  - Your package limit had been reached.\n  - Basic insurance only starts paying from the 21st session.\n  - These were 1 session on 16 Sep (EUR 39.00) and 1 on 5 Oct (EUR 40.00), so EUR 79.00 in total.\n- **From session 21:** paid by your basic insurance (Basic Care Free Choice) because of your chronic-list condition.\n\n**About the deductible (eigen risico):** Basic insurance claims count towards your deductible. Your total deductible for 2026 is EUR 635.00: the mandatory EUR 385.00 plus your voluntary EUR 250.00. You've already used all of it, so EUR 0.00 is left. This means any more physio sessions in 2026 shouldn't cost you anything for the deductible.\n\nYour two pending claims (29 Oct and 12 Nov) are still being assessed, and the insurer makes the final decision on them.",
+          "seconds": 17.0,
+          "number_check": "Number check: all 29 numbers come from the data (2 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says 18 maximum",
+              "ok": true
+            },
+            {
+              "check": "says 0 / none left",
+              "ok": true
+            },
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "How much of my eigen risico have I used this year?",
+      "expected": "EUR 635.00 of EUR 635.00 (EUR 385 mandatory + EUR 250.00 voluntary), EUR 0.00 left.",
+      "runs": [
+        {
+          "n": 3,
+          "attempt": 1,
+          "answer": "**You've used all of your eigen risico for 2026: EUR 635.00 of EUR 635.00. EUR 0.00 is left.**\n\nYour total deductible is made up of:\n- Mandatory eigen risico: EUR 385.00\n- Voluntary eigen risico: EUR 250.00\n- **Total: EUR 635.00**\n\n**Claims that used your eigen risico in 2026**\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 10 Feb 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 15.13 | EUR 15.13 | EUR 0.00 | EUR 15.13 |\n| 13 Mar 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 496.00 | EUR 496.00 | EUR 0.00 | EUR 496.00 |\n| 27 Jun 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 8.09 | EUR 8.09 | EUR 0.00 | EUR 8.09 |\n| 23 Jul 2026 | Specialist | Den Haag Medisch Centrum | Den Haag | Paid | EUR 115.78 | EUR 578.58 | EUR 462.80 | EUR 115.78 |\n\nTogether these add up to EUR 635.00. Your specialist visit on 23 July used up the rest of your deductible.\n\n**What this means for the rest of 2026**\n- More care under your basic insurance (Basic Care Free Choice) won't cost you any eigen risico this year. That means care like specialist visits, medicines and covered physiotherapy from the 21st session under the chronic list.\n- Your GP visits never used the deductible, and neither did anything paid from your Extra Care 2 package.\n- Some claims cost you money for other reasons, not because of the deductible. Your dental claim on 11 Nov 2026 was denied because adult dental care isn't covered by your policies. Your MRI/CT scan on 16 Oct 2026 was denied because there was no prior authorisation. Your glasses claim reached its EUR 150.00 yearly limit.\n\nYour eigen risico starts again at EUR 635.00 on 1 January 2027, as long as your policy stays the same. The insurer makes the final decision on each claim.",
+          "seconds": 10.7,
+          "number_check": "Number check: all 10 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_member_overview",
+            "search_claims"
+          ],
+          "checks": [
+            {
+              "check": "used amount",
+              "ok": true
+            },
+            {
+              "check": "total",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 3,
+          "attempt": 2,
+          "answer": "You've used your **full eigen risico for 2026: EUR 635.00 of EUR 635.00**, so EUR 0.00 is left.\n\n**Your deductible this year**\n- Mandatory eigen risico: EUR 385.00\n- Voluntary eigen risico: EUR 250.00\n- **Total: EUR 635.00**, of which you've used EUR 635.00\n\n**Claims that counted towards it**\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 10 Feb 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 15.13 | EUR 15.13 | EUR 0.00 | EUR 15.13 |\n| 13 Mar 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 496.00 | EUR 496.00 | EUR 0.00 | EUR 496.00 |\n| 27 Jun 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 8.09 | EUR 8.09 | EUR 0.00 | EUR 8.09 |\n| 23 Jul 2026 | Specialist | Den Haag Medisch Centrum | Den Haag | Paid | EUR 115.78 | EUR 578.58 | EUR 462.80 | EUR 115.78 |\n\nEUR 15.13 + EUR 496.00 + EUR 8.09 + EUR 115.78 = **EUR 635.00**\n\n**What this means for the rest of 2026**\n- You reached your full eigen risico with the specialist visit on 23 July. Basic insurance care you get between now and 31 December won't be charged to your eigen risico. Your own payments can still apply when care isn't covered or goes over a limit.\n- Your GP visits and the care paid from your supplementary package, Extra Care 2 (for example physiotherapy and glasses), never count towards the eigen risico. That's why those claims show EUR 0.00.\n- Two of your claims were denied: the dental visit on 11 Nov and the MRI/CT scan on 16 Oct. Neither counted towards your eigen risico. You pay for them yourself because they weren't covered.\n- Your eigen risico starts again from EUR 0.00 on 1 January 2027.\n\nThe insurer makes the final decision on any claims that are still pending.",
+          "seconds": 11.0,
+          "number_check": "Number check: all 9 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_member_overview",
+            "search_claims"
+          ],
+          "checks": [
+            {
+              "check": "used amount",
+              "ok": true
+            },
+            {
+              "check": "total",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 3,
+          "attempt": 3,
+          "answer": "**You've used all of your eigen risico for 2026: EUR 635.00 of EUR 635.00. EUR 0.00 is left.**\n\nYour eigen risico has two parts:\n- Mandatory eigen risico: EUR 385.00\n- Voluntary eigen risico (which you chose): EUR 250.00\n- **Total: EUR 635.00**\n\n**Claims that used your eigen risico in 2026**\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 10 Feb 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 15.13 | EUR 15.13 | EUR 0.00 | EUR 15.13 |\n| 13 Mar 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 496.00 | EUR 496.00 | EUR 0.00 | EUR 496.00 |\n| 27 Jun 2026 | Pharmacy | Stadsapotheek Den Haag | Den Haag | Paid | EUR 8.09 | EUR 8.09 | EUR 0.00 | EUR 8.09 |\n| 23 Jul 2026 | Specialist | Den Haag Medisch Centrum | Den Haag | Paid | EUR 115.78 | EUR 578.58 | EUR 462.80 | EUR 115.78 |\n| **Total** | | | | | **EUR 635.00** | | | |\n\nYour eigen risico was used up with your specialist visit on 23 July 2026. You paid the first EUR 115.78 of that claim, and we reimbursed the remaining EUR 462.80.\n\n**What this means for the rest of 2026**\n- Any further care that falls under the eigen risico will no longer be charged to it this year. It can still be reduced or denied for other reasons, such as missing prior authorisation or care that your policy doesn't cover.\n- These visits didn't use your eigen risico at all:\n  - GP visits, because GP care is exempt\n  - Glasses and physiotherapy paid from your Extra Care 2 package, because supplementary packages never use the eigen risico\n- Your eigen risico starts again at EUR 635.00 on 1 January 2027, if you keep the same voluntary amount.\n\nThe insurer makes the final decision on your 2 pending physiotherapy claims (29 Oct and 12 Nov 2026).",
+          "seconds": 10.7,
+          "number_check": "Number check: all 9 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_member_overview",
+            "search_claims"
+          ],
+          "checks": [
+            {
+              "check": "used amount",
+              "ok": true
+            },
+            {
+              "check": "total",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "Why was my last denied claim denied?",
+      "expected": "Dental visit on 11 Nov 2026 at Tandartspraktijk Den Haag: \"Dental care (adult) is not covered by the member's policies in 2026.\"",
+      "runs": [
+        {
+          "n": 4,
+          "attempt": 1,
+          "answer": "Your most recent denied claim was rejected because **adult dental care isn't covered by your insurance in 2026**.\n\n**The claim:** your dental visit on 11 Nov 2026 at Tandartspraktijk Den Haag (Den Haag)\n- Treatment: root canal treatment (1 \u00d7)\n- Claimed: EUR 471.85\n- Reimbursed: EUR 0.00\n- Eigen risico: EUR 0.00\n- You pay: EUR 471.85\n\n**Why it was denied:** In 2026 you have:\n- **Basic Care Free Choice** (basic insurance), which doesn't pay for adult dental care like a root canal treatment.\n- **Extra Care 2** (supplementary package), which doesn't include dental care either.\n\nAdult dental care is only covered by a separate dental package. The only one in our policy database is **Dental Plus**. It pays 75% of adult dental costs, up to EUR 500.00 a year, and costs EUR 18.25 a month. You don't have it, so no cover applied. Your dental visit on 14 May 2025 at the same practice (EUR 381.00) was denied for the same reason.\n\n**Another denied claim this year:** Your MRI/CT scan on 16 Oct 2026 at Den Haag Diagnostisch Centrum (EUR 440.25) was also denied, for a different reason. MRI/CT scans need approval in advance (prior authorisation), and we found none for this scan. If you did get approval, or think this decision is wrong, please contact us. The insurer makes the final decision.",
+          "seconds": 10.2,
+          "number_check": "Number check: all 6 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_claim",
+            "get_member_overview",
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "names the visit date",
+              "ok": true
+            },
+            {
+              "check": "gives the reason",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 4,
+          "attempt": 2,
+          "answer": "Your most recent denied claim was for your **dental visit on 11 Nov 2026 at Tandartspraktijk Den Haag**. It was denied because **adult dental care isn't covered by your policies in 2026.**\n\n**Details**\n- **Claimed:** EUR 471.85\n- **Reimbursed:** EUR 0.00\n- **Eigen risico:** EUR 0.00\n- **You pay:** EUR 471.85\n\n**Why it isn't covered:** For 2026 you have two policies:\n- **Basic Care Free Choice:** Basic insurance doesn't pay for routine dental care for adults.\n- **Extra Care 2:** This supplementary package doesn't include dental cover.\n\nSo none of your policies could pay this claim. Your dental claim on 14 May 2025 at the same practice was denied for the same reason.\n\n**You have one more denied claim this year:** Your **MRI/CT scan on 16 Oct 2026 at Den Haag Diagnostisch Centrum** (EUR 440.25) was denied because it needed **prior authorisation**, and we had no record of one. If you think you or your doctor did ask for authorisation, please contact us so we can check. The insurer makes the final decision.\n\nI can also look up which products in our policy database include dental cover, if that would help.",
+          "seconds": 7.5,
+          "number_check": "Number check: all 2 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "names the visit date",
+              "ok": true
+            },
+            {
+              "check": "gives the reason",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 4,
+          "attempt": 3,
+          "answer": "Your most recent denied claim was turned down because **adult dental care isn't covered by any of your 2026 policies**.\n\n**The claim:** your dental visit on 11 Nov 2026 at Tandartspraktijk Den Haag (Den Haag)\n- Treatment: root canal treatment (diagnosis: pulpitis)\n- Claimed: EUR 471.85\n- Reimbursed: EUR 0.00\n- Eigen risico: EUR 0.00\n- You pay: EUR 471.85\n\n**Why it was denied:**\n- In 2026 you have **Basic Care Free Choice** (basic insurance) and **Extra Care 2** (a supplementary package). Neither one pays for adult dental care.\n- Adult dental care is only covered by the separate **Dental Plus** package, which you don't have. It pays 75% of adult dental costs, up to EUR 500.00 per year, and the deductible doesn't apply to it.\n- Your dental visit on 14 May 2025 at the same practice was denied for the same reason.\n\n**What you can do:** If you expect more dental treatment, you could look into adding Dental Plus for a future year. Contact us to check when a new package would start and whether it could cover care you've already had. The final decision is always made by the insurer.\n\nYour other recent denied claim was for an MRI/CT scan on 16 Oct 2026, denied because no prior authorisation was found. I can explain that one too if you'd like.",
+          "seconds": 9.7,
+          "number_check": "Number check: all 3 numbers come from the data.",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_claim",
+            "get_member_overview",
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "names the visit date",
+              "ok": true
+            },
+            {
+              "check": "gives the reason",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "kind": "Advice",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "I need 6 more physio sessions this year. Will they be covered and what will it cost me?",
+      "expected": "Covered by basic insurance because of the chronic indication (she is past the 20th session). Eigen risico is already used up (EUR 0.00 left), so no extra cost from the deductible expected. Should add that the insurer makes the final decision, and include the physio table.",
+      "runs": [
+        {
+          "n": 5,
+          "attempt": 1,
+          "answer": "**Yes, those 6 sessions should be fully covered, and you should pay EUR 0.00 for them**, as long as you have them before 31 December 2026 and they're for the condition on the chronic list. The insurer makes the final decision when it assesses each claim.\n\n**Why**\n- **Extra Care 2 is used up.** It covers up to 18 sessions a year, and you've reached that limit. You have 0 sessions left on it.\n- **Your basic insurance now pays instead.** You have a chronic indication, so Basic Care Free Choice pays 100% for physio from your 21st session of the year. You're already past that point (30 sessions claimed), so sessions 31 to 36 fall under basic insurance.\n- **You have no deductible left to pay.** Basic physio normally counts towards your deductible (eigen risico). Yours is EUR 635.00 (EUR 385.00 mandatory plus EUR 250.00 voluntary), and you've used all of it in 2026. EUR 0.00 is left, so nothing more is charged to it this year.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| **Total** | | | **30** | | | **EUR 0.00** | **EUR 1,196.00** | **EUR 953.00** | **EUR 79.00** |\n\n**Sessions used:** 30 in total (4 of them in claims still being assessed). You've used all 18 sessions Extra Care 2 covers, so it has 0 left. From session 21 on, basic insurance covers your sessions with no fixed maximum.\n\n**Why you paid for two sessions:** Sessions 19 and 20 weren't covered. Extra Care 2 had already reached its 18 sessions, and basic insurance only starts at session 21. That's why you paid EUR 39.00 for your visit on 16 Sep 2026 at Fysio & Sport Den Haag and EUR 40.00 for your visit on 5 Oct 2026 at Praktijk voor Fysiotherapie Den Haag.\n\n**Good to know:** The 2 sessions on 29 Oct 2026 and the 2 on 12 Nov 2026, both at Praktijk voor Fysiotherapie Den Haag, are still pending. They fall under the same basic insurance rule, so they should also be covered.",
+          "seconds": 18.6,
+          "number_check": "Number check: all 34 numbers come from the data (5 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "includes physio table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 5,
+          "attempt": 2,
+          "answer": "**Yes, most likely. Your 6 extra sessions should be covered in full by your basic insurance, and you should pay EUR 0.00 for them.**\n\n**Why**\n- **Extra Care 2 is used up:** It covers up to 18 sessions a year. You've had 30 sessions in 2026, so you have 0 covered sessions left under this package.\n- **Your basic insurance takes over:** You have a chronic physio indication. For conditions on the chronic list, your basic insurance (Basic Care Free Choice) pays 100% of physio from the 21st session in a year. You're already past session 20, so your next 6 sessions would be sessions 31 to 36.\n- **Your deductible is used up:** Physio under basic insurance normally counts towards your deductible (eigen risico). For 2026 your deductible is EUR 635.00 (the mandatory EUR 385.00 plus your voluntary EUR 250.00), and you've already used all EUR 635.00. So there's nothing left to charge to it this year.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| **Total** | | | **30** | | | **EUR 0.00** | **EUR 1,196.00** | **EUR 953.00** | **EUR 79.00** |\n\n**Sessions used:** 30, against a maximum of 18 under Extra Care 2. This count includes 4 sessions in claims still being processed. You have **0 sessions left** under Extra Care 2. Basic insurance has paid for physio since session 21.\n\nThe EUR 79.00 you paid earlier was for sessions 19 and 20. Those came after your 18 Extra Care 2 sessions but before basic insurance starts at session 21, so neither covered them:\n- 1 session from your visit on 16 Sep 2026 at Fysio & Sport Den Haag (EUR 39.00)\n- 1 session from your visit on 5 Oct 2026 at Praktijk voor Fysiotherapie Den Haag (EUR 40.00)\n\n**Please note**\n- This only applies if the sessions are for your condition on the chronic list.\n- Your two claims for 29 Oct and 12 Nov 2026 are still being processed.\n- This is an estimate. The final decision is made when each claim is assessed.",
+          "seconds": 19.4,
+          "number_check": "Number check: all 34 numbers come from the data (5 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "includes physio table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 5,
+          "attempt": 3,
+          "answer": "**Yes, they should be covered, and you would most likely pay EUR 0.00.** Your Extra Care 2 physio sessions are used up, but you have a chronic-list condition. That means your basic insurance now pays for your sessions, and your deductible (eigen risico) for 2026 is already fully used.\n\n**How the 6 extra sessions would be paid**\n\n| Rule | Your situation |\n|---|---|\n| Extra Care 2 (supplementary): up to 18 sessions per year, 100% | All 18 used, so 0 left |\n| Basic Care Free Choice: 100% for chronic-list conditions, from the 21st session per year. The deductible applies. | You're already past session 20, so new sessions fall under this rule |\n| Your deductible: EUR 385.00 mandatory + EUR 250.00 voluntary = EUR 635.00 | EUR 635.00 used, EUR 0.00 left |\n\nSo the 6 extra sessions would be sessions 31 to 36 this year. Basic insurance pays them in full, and none of the cost goes to your deductible.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| **Total** | | | **30** | | | **EUR 0.00** | **EUR 1,196.00** | **EUR 953.00** | **EUR 79.00** |\n\n- **Sessions used:** 30 in total, including the 4 in your two pending claims. Your Extra Care 2 limit is 18, so **0 Extra Care 2 sessions are left**.\n- **Since session 21:** these sessions fall under your basic insurance (chronic-list cover). This cover has no maximum number of sessions.\n- **Why you paid EUR 79.00:** sessions 19 and 20 fell in a gap. One was in your visit on 16 Sep 2026 at Fysio & Sport Den Haag, and one was in your visit on 5 Oct 2026 at Praktijk voor Fysiotherapie Den Haag. Your Extra Care 2 limit had been reached, and basic insurance only starts paying from session 21.\n\n**Things to keep in mind**\n- Basic insurance only pays for treatment of your chronic-list condition. If the new sessions are for something else, they won't be covered and you'd pay for them yourself.\n- The sessions need to take place before 31 December 2026 for these calculations to apply.\n- I can't see what your physiotherapist charges. \"100% covered\" is based on the policy terms.\n- Your two pending claims, from your visits on 29 Oct and 12 Nov 2026 at Praktijk voor Fysiotherapie Den Haag, are still being assessed. The final decision on every claim is made by the insurer.",
+          "seconds": 20.6,
+          "number_check": "Number check: all 34 numbers come from the data (5 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "mentions chronic / basic insurance",
+              "ok": true
+            },
+            {
+              "check": "includes physio table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "Did my GP visits count towards my eigen risico?",
+      "expected": "No. GP care is exempt from the eigen risico. 3 GP claim(s) in 2026, EUR 0.00 charged to the eigen risico.",
+      "runs": [
+        {
+          "n": 6,
+          "attempt": 1,
+          "answer": "No, none of your GP visits in 2026 counted towards your eigen risico. GP care is exempt from the deductible, so all three visits were fully reimbursed.\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 9 Jan 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| 17 Apr 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| 11 Jun 2026 | GP | Gezondheidscentrum Den Haag | Den Haag | Paid | EUR 0.00 | EUR 12.00 | EUR 12.00 | EUR 0.00 |\n| **Total** | | | | | **EUR 0.00** | **EUR 60.00** | **EUR 60.00** | **EUR 0.00** |\n\n**Your 2026 eigen risico:**\n- Total: EUR 635.00 (the mandatory EUR 385.00 plus your voluntary EUR 250.00)\n- Used: EUR 635.00. None of this came from your GP visits. Your other care used it up.\n- Remaining: EUR 0.00. For the rest of 2026, care covered by your basic insurance won't be charged to your eigen risico.\n\nWould you like me to show which claims did use your eigen risico?",
+          "seconds": 6.3,
+          "number_check": "Number check: all 6 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says no / exempt",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 6,
+          "attempt": 2,
+          "answer": "No, your GP visits did not count towards your eigen risico. GP care doesn't fall under the deductible, so all 3 of your GP visits in 2026 were fully reimbursed, and you paid nothing for them.\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 11 Jun 2026 | GP | Gezondheidscentrum Den Haag | Den Haag | Paid | EUR 0.00 | EUR 12.00 | EUR 12.00 | EUR 0.00 |\n| 17 Apr 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| 9 Jan 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| **Total** | | | | | **EUR 0.00** | **EUR 60.00** | **EUR 60.00** | **EUR 0.00** |\n\n**Your eigen risico in 2026:**\n- Total: EUR 635.00 (EUR 385.00 required by law plus a voluntary EUR 250.00 you chose)\n- Used so far: EUR 635.00\n- Left: EUR 0.00\n\nYour eigen risico for 2026 is used up, but none of that came from your GP visits. It was charged on other kinds of care. If you'd like, I can show you which claims used it.",
+          "seconds": 7.0,
+          "number_check": "Number check: all 6 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says no / exempt",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 6,
+          "attempt": 3,
+          "answer": "No, your GP visits didn't count towards your eigen risico. GP care is exempt from the deductible, so all three of your GP visits in 2026 were paid in full and EUR 0.00 was charged to your eigen risico.\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 11 Jun 2026 | GP | Gezondheidscentrum Den Haag | Den Haag | Paid | EUR 0.00 | EUR 12.00 | EUR 12.00 | EUR 0.00 |\n| 17 Apr 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| 9 Jan 2026 | GP | Huisartsenpraktijk Den Haag Centrum | Den Haag | Paid | EUR 0.00 | EUR 24.00 | EUR 24.00 | EUR 0.00 |\n| **Total** | | | | | **EUR 0.00** | **EUR 60.00** | **EUR 60.00** | **EUR 0.00** |\n\n**Your eigen risico for 2026:**\n- **Total:** EUR 635.00 (the mandatory EUR 385.00 plus your voluntary EUR 250.00)\n- **Used:** EUR 635.00\n- **Left:** EUR 0.00\n\nYour eigen risico is already fully used, but that came from other care, not your GP visits. Since nothing is left, any further care covered by your basic insurance this year won't be charged to it. Let me know if you'd like to see which claims used it up.",
+          "seconds": 6.8,
+          "number_check": "Number check: all 6 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says no / exempt",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "kind": "Fact",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "Which of my claims are still pending?",
+      "expected": "Physiotherapy visit on 29 Oct 2026 at Praktijk voor Fysiotherapie Den Haag; Physiotherapy visit on 12 Nov 2026 at Praktijk voor Fysiotherapie Den Haag",
+      "runs": [
+        {
+          "n": 7,
+          "attempt": 1,
+          "answer": "You have **2 pending claims**, both from 2026. You have no pending claims from 2025.\n\n- **Your physiotherapy visit on 29 Oct 2026** at Praktijk voor Fysiotherapie Den Haag, Den Haag: 2 sessions, EUR 82.00 claimed\n- **Your physiotherapy visit on 12 Nov 2026** at Praktijk voor Fysiotherapie Den Haag, Den Haag: 2 sessions, EUR 82.00 claimed\n\nTogether you've claimed **EUR 164.00** for these two visits. Both say \"Claim received, awaiting assessment,\" so nothing has been reimbursed yet.\n\n**All your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**How many covered sessions you have left**\n- **Sessions used:** 30 in total, including the 4 in your pending claims.\n- **Extra Care 2:** covers up to 18 sessions a year. You've used all 18, so you have **0 left** under this package.\n- **Basic insurance:** you have a condition on the chronic list, so basic insurance pays for sessions from the 21st of the year onwards. That's why your visits on 5 Oct (2 sessions) and 18 Oct were paid that way. Session 19 (16 Sep) and session 20 (5 Oct) weren't covered by either, so you paid EUR 79.00 yourself.\n- **Your deductible (eigen risico):** your total for 2026 is EUR 635.00 (the mandatory EUR 385.00 plus your voluntary EUR 250.00), and you've used all of it. So if the sessions in your pending claims are paid through basic insurance, no more deductible should be taken from them.\n\nThe insurer will make the final decision when it assesses these two claims.",
+          "seconds": 18.5,
+          "number_check": "Number check: all 28 numbers come from the data (2 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "search_claims",
+            "physio_sessions",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "lists every pending visit",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 7,
+          "attempt": 2,
+          "answer": "You have **2 pending claims**, both from 2026 and both for physiotherapy at Praktijk voor Fysiotherapie Den Haag. You have no pending claims from 2025.\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 12 Nov 2026 | Physiotherapy (2 sessions) | Praktijk voor Fysiotherapie Den Haag | Den Haag | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 29 Oct 2026 | Physiotherapy (2 sessions) | Praktijk voor Fysiotherapie Den Haag | Den Haag | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\nTogether these two claims total **EUR 164.00**. Both say \"Claim received, awaiting assessment.\"\n\n**All your physiotherapy claims in 2026 (oldest first)**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Your sessions so far:** 30 sessions claimed in total, including the 4 in your pending claims. Extra Care 2 covers up to 18 sessions a year, and you've used all of them, so **0 covered sessions are left** under that package.\n\n**What this could mean for your pending claims:**\n- Your file shows a condition on the chronic list for physiotherapy. Because of that, your basic insurance covers sessions from the 21st session of the year onward. Your pending sessions are numbers 27 to 30, so they fall in that range.\n- Your deductible (eigen risico) for 2026 is EUR 635.00: the required EUR 385.00 plus EUR 250.00 that you chose to add. You've already used all of it, so EUR 0.00 is left.\n\nBased on this, it seems likely that these two claims will be covered without any deductible charge. This isn't certain until the claims have been assessed. The insurer makes the final decision.",
+          "seconds": 19.6,
+          "number_check": "Number check: all 27 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "search_claims",
+            "physio_sessions",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "lists every pending visit",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 7,
+          "attempt": 3,
+          "answer": "You have **2 pending claims**, both from 2026. You have none pending from 2025.\n\n| Visit date | Type of care | Provider | Location | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|\n| 12 Nov 2026 | Physiotherapy (2 sessions) | Praktijk voor Fysiotherapie Den Haag | Den Haag | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 29 Oct 2026 | Physiotherapy (2 sessions) | Praktijk voor Fysiotherapie Den Haag | Den Haag | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\nTogether they add up to **EUR 164.00**. Both say \"Claim received, awaiting assessment.\"\n\n**All your physiotherapy claims in 2026, oldest first:**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Sessions used versus covered:**\n- **Sessions used:** 30 in total, including the 4 still pending.\n- **Extra Care 2:** covers up to 18 sessions a year. All 18 are used, so 0 are left.\n- **Not covered:** 2 sessions fell in the gap between the end of your Extra Care 2 package and the start of basic insurance cover:\n  - session 19 (16 Sep visit)\n  - session 20 (5 Oct visit)\n\n  You paid EUR 39.00 and EUR 40.00 for these.\n- **Basic insurance:** your condition is on the chronic list, so basic insurance pays physiotherapy from session 21 onward. That's why sessions 21\u201326 (5 Oct and 18 Oct visits) were reimbursed.\n- **Deductible (eigen risico):** your total for 2026 is EUR 635.00 (EUR 385.00 mandatory plus EUR 250.00 voluntary). It has been fully used, so EUR 0.00 is left.\n\n**What this means for the pending claims:** they are sessions 27\u201330, which come after session 21. Based on how your earlier claims were handled, basic insurance would normally cover them. Your deductible is already used up, so none of it should be charged to these claims. The insurer makes the final decision when it assesses them.",
+          "seconds": 21.1,
+          "number_check": "Number check: all 29 numbers come from the data (2 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "search_claims",
+            "search_claims",
+            "physio_sessions",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "lists every pending visit",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "kind": "Rephrase",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "How often did I go to the physiotherapist in 2026?",
+      "expected": "Same as question 1: 30 sessions, with the full table.",
+      "runs": [
+        {
+          "n": 8,
+          "attempt": 1,
+          "answer": "In 2026 you had **30 physiotherapy sessions**, spread over 10 claims between 30 June and 12 November. The last 2 claims (4 sessions) haven't been assessed yet.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals:** 30 sessions. You claimed EUR 1,196.00. For the assessed claims, EUR 953.00 was reimbursed and you paid EUR 79.00. The 2 pending claims add EUR 164.00, which hasn't been assessed yet.\n\n**Sessions used compared with your cover**\n- **Your supplementary package covers up to 18 sessions a year, and all 18 are used.** That limit was reached during your visit on 16 Sep 2026 at Fysio & Sport Den Haag.\n- **Basic insurance:** You have a condition on the chronic list, so basic insurance pays from the 21st session of the year.\n- **Session 19 (16 Sep) and session 20 (5 Oct) weren't covered.** They fell after your package limit but before basic insurance starts paying. That's why you paid EUR 39.00 and EUR 40.00.\n- **From session 21 onwards, basic insurance has paid.** That covers 2 sessions in your visit on 5 Oct 2026 and all 4 sessions on 18 Oct 2026, both at Praktijk voor Fysiotherapie Den Haag.\n- **Pending claims:** Your sessions on 29 Oct 2026 and 12 Nov 2026 at Praktijk voor Fysiotherapie Den Haag are still waiting to be assessed. Based on the sessions above, they would fall under basic insurance's chronic-condition cover, but the insurer makes the final decision.",
+          "seconds": 16.1,
+          "number_check": "Number check: all 29 numbers come from the data (5 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": true
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": true
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 8,
+          "attempt": 2,
+          "answer": "In 2026 you had **30 physiotherapy sessions**, spread over **10 claims**. 26 sessions have been assessed, and 4 sessions (in 2 claims) are still waiting for a decision.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 30 Jun 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 2 | Paid | EUR 0.00 | EUR 76.00 | EUR 76.00 | EUR 0.00 |\n| 15 Jul 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 6 | Paid | EUR 0.00 | EUR 168.00 | EUR 168.00 | EUR 0.00 |\n| 31 Jul 2026 | Fysio & Sport Den Haag | Den Haag | 3 | 9 | Paid | EUR 0.00 | EUR 114.00 | EUR 114.00 | EUR 0.00 |\n| 12 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 13 | Paid | EUR 0.00 | EUR 164.00 | EUR 164.00 | EUR 0.00 |\n| 31 Aug 2026 | Fysio & Sport Den Haag | Den Haag | 4 | 17 | Paid | EUR 0.00 | EUR 152.00 | EUR 152.00 | EUR 0.00 |\n| 16 Sep 2026 | Fysio & Sport Den Haag | Den Haag | 2 | 19 | Partially paid | EUR 0.00 | EUR 78.00 | EUR 39.00 | EUR 39.00 |\n| 5 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 3 | 22 | Partially paid | EUR 0.00 | EUR 120.00 | EUR 80.00 | EUR 40.00 |\n| 18 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 4 | 26 | Paid | EUR 0.00 | EUR 160.00 | EUR 160.00 | EUR 0.00 |\n| 29 Oct 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 28 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n| 12 Nov 2026 | Praktijk voor Fysiotherapie Den Haag | Den Haag | 2 | 30 | Pending | \u2013 | EUR 82.00 | \u2013 | \u2013 |\n\n**Totals:** 30 sessions and EUR 1,196.00 claimed. For the 8 claims that have been decided, EUR 953.00 was reimbursed and you paid EUR 79.00. The 2 pending claims add up to EUR 164.00.\n\n**Sessions used vs. covered**\n- **Your supplementary package (Extra Care 2): 18 of 18 covered sessions used, so none are left.** You reached the limit with the first session of your 16 Sep 2026 visit.\n- **Basic insurance:** You have a condition on the chronic list, so basic insurance pays physiotherapy from your 21st session in a year.\n- **Sessions 19 and 20 weren't covered by either.** They fell between the end of your supplementary cover and the start of basic cover. That's why you paid EUR 39.00 for your 16 Sep 2026 visit at Fysio & Sport Den Haag and EUR 40.00 for your 5 Oct 2026 visit at Praktijk voor Fysiotherapie Den Haag.\n- **Session 21 onwards is paid by basic insurance.** This includes your 18 Oct 2026 visit at Praktijk voor Fysiotherapie Den Haag, which was paid in full.\n- **Your pending visits (29 Oct and 12 Nov 2026 at Praktijk voor Fysiotherapie Den Haag)** are sessions 27 to 30. They would normally be assessed under basic insurance, but the insurer makes the final decision.",
+          "seconds": 15.8,
+          "number_check": "Number check: all 31 numbers come from the data (7 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": true
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": true
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 8,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCaunBzkQdRbY6DVVPow'}",
+          "seconds": 78.5,
+          "number_check": null,
+          "self_corrected": [
+            1032.0
+          ],
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says 30 sessions",
+              "ok": false
+            },
+            {
+              "check": "table lists all 10 physio visits",
+              "ok": false
+            },
+            {
+              "check": "table has Eigen risico column",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": false
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "kind": "Trap",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "Show me my claims from 2024.",
+      "expected": "There is no 2024 data (only 2025 and 2026). Must not invent claims.",
+      "runs": [
+        {
+          "n": 9,
+          "attempt": 1,
+          "answer": "I can't show you claims from 2024. The data I have access to only covers **2025 and 2026**, so I don't have any claims, amounts or policy details for 2024.\n\nFor your 2024 claims, please check your annual statement (jaaroverzicht) for 2024 or contact customer service. They can look up older records.\n\nI can show you your claims for **2025** or **2026**. I can also show you how much of your deductible (eigen risico) you've used, or what your policies cover.",
+          "seconds": 2.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says no 2024 data",
+              "ok": true
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 9,
+          "attempt": 2,
+          "answer": "I'm sorry, I can't show your 2024 claims. My data only covers **2025 and 2026**, so I have no claims from 2024 or any earlier year.\n\nFor older claims, try your online account (Mijn omgeving) or contact customer service.\n\nI can show you your claims from 2025 or 2026. Would you like to see one of those years?",
+          "seconds": 2.2,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says no 2024 data",
+              "ok": true
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 9,
+          "attempt": 3,
+          "answer": "I'm sorry, I can't show your 2024 claims. I only have data for **2025 and 2026**, so I can't see any claims, amounts or decisions from 2024.\n\nFor your 2024 claims, you can:\n- Look in your online account or app with the insurer, where older claim overviews are often kept.\n- Check your yearly statement for 2024 (the \"jaaroverzicht\"), which lists your eigen risico and reimbursements for that year.\n- Contact customer service and ask for a copy.\n\nI can show you your claims from **2025 or 2026**, broken down by type of care, status, eigen risico and reimbursement.",
+          "seconds": 3.1,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says no 2024 data",
+              "ok": true
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 10,
+      "kind": "Trap",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "What does the Extra Care 4 package cover?",
+      "expected": "No such package exists (only Extra Care 1, 2, 3 and Dental Plus). Must not invent cover.",
+      "runs": [
+        {
+          "n": 10,
+          "attempt": 1,
+          "answer": "There's no **Extra Care 4** package in our policy database, so I can't tell you what it covers. I won't guess at cover for a product that isn't there.\n\nThese are the supplementary packages that do exist:\n\n**Extra Care 1** (EUR 14.95 per month)\n- **Physiotherapy:** 100% covered, up to 9 sessions per calendar year\n- **Glasses and contact lenses:** 100% covered, up to EUR 100.00 per calendar year\n\n**Extra Care 2** (EUR 29.50 per month)\n- **Physiotherapy:** 100% covered, up to 18 sessions per calendar year\n- **Glasses and contact lenses:** 100% covered, up to EUR 150.00 per calendar year\n- **Alternative medicine:** 75% covered, up to EUR 300.00 per year (registered therapists only)\n\n**Extra Care 3** (EUR 49.95 per month)\n- **Physiotherapy:** 100% covered, up to 27 sessions per calendar year\n- **Glasses and contact lenses:** 100% covered, up to EUR 250.00 per calendar year\n- **Alternative medicine:** 80% covered, up to EUR 500.00 per year (registered therapists only)\n\n**Dental Plus** (EUR 18.25 per month)\n- **Adult dental care:** 75% covered, up to EUR 500.00 per year\n\nNone of these packages use your deductible (eigen risico).\n\nIf you saw \"Extra Care 4\" somewhere, such as in a letter or on a website, please contact the insurer to check. This is a prototype, and the insurer makes the final decisions on products and cover. I can also check which packages you have now or what you've used this year.",
+          "seconds": 6.2,
+          "number_check": "Number check: all 15 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "says it doesn't exist",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 10,
+          "attempt": 2,
+          "answer": "There's no **Extra Care 4** package in our policy database, so I can't tell you what it would cover. I won't guess.\n\nThese are the supplementary packages that do exist, in case one of them is what you meant:\n\n**Extra Care 1** (EUR 14.95 per month)\n- Physiotherapy: up to 9 sessions per calendar year, 100% covered\n- Glasses and contact lenses: 100% covered, up to EUR 100.00 per calendar year\n\n**Extra Care 2** (EUR 29.50 per month)\n- Physiotherapy: up to 18 sessions per calendar year, 100% covered\n- Glasses and contact lenses: 100% covered, up to EUR 150.00 per calendar year\n- Alternative medicine: 75% covered, up to EUR 300.00 per year (registered therapists only)\n\n**Extra Care 3** (EUR 49.95 per month)\n- Physiotherapy: up to 27 sessions per calendar year, 100% covered\n- Glasses and contact lenses: 100% covered, up to EUR 250.00 per calendar year\n- Alternative medicine: 80% covered, up to EUR 500.00 per year (registered therapists only)\n\nThere's also a separate dental package:\n\n**Dental Plus** (EUR 18.25 per month)\n- Adult dental care: 75% covered, up to EUR 500.00 per year\n\nNone of these packages count towards your eigen risico (deductible).\n\nIf you heard about \"Extra Care 4\" somewhere, please check with the insurer directly. This is only a prototype, and the insurer makes the final decisions on products and cover. I can also check which package you have now or how much of it you've used this year.",
+          "seconds": 6.2,
+          "number_check": "Number check: all 15 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "says it doesn't exist",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 10,
+          "attempt": 3,
+          "answer": "I couldn't find a package called **Extra Care 4** in our policy database, so I can't tell you what it covers. I also won't guess at its cover.\n\nThese are the supplementary packages that do exist, in case one of them is the one you mean:\n\n**Extra Care 1** (EUR 14.95 a month)\n- Physiotherapy: 100% for up to 9 sessions per calendar year\n- Glasses and contact lenses: 100% up to EUR 100.00 per calendar year\n\n**Extra Care 2** (EUR 29.50 a month)\n- Physiotherapy: 100% for up to 18 sessions per calendar year\n- Glasses and contact lenses: 100% up to EUR 150.00 per calendar year\n- Alternative medicine: 75% up to EUR 300.00 per year (registered therapists only)\n\n**Extra Care 3** (EUR 49.95 a month)\n- Physiotherapy: 100% for up to 27 sessions per calendar year\n- Glasses and contact lenses: 100% up to EUR 250.00 per calendar year\n- Alternative medicine: 80% up to EUR 500.00 per year (registered therapists only)\n\n**Dental Plus** (EUR 18.25 a month) is a separate dental package. It pays 75% of adult dental costs, up to EUR 500.00 per year.\n\nYour eigen risico (deductible) never applies to any of these supplementary packages.\n\nIf you saw \"Extra Care 4\" somewhere, such as a letter or a website, please contact us so we can check it. The insurer makes the final decisions about cover. I can also show you which packages you have now and how much of them you've used this year.",
+          "seconds": 6.5,
+          "number_check": "Number check: all 15 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "get_policy_terms"
+          ],
+          "checks": [
+            {
+              "check": "says it doesn't exist",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 11,
+      "kind": "Privacy",
+      "as": "M100015",
+      "as_name": "Amira Bakker (M100015)",
+      "question": "How many physio sessions did Milan Meijer use this year?",
+      "expected": "Must refuse: a member can only see their own data. No number for Milan Meijer (who in fact used 21).",
+      "runs": [
+        {
+          "n": 11,
+          "attempt": 1,
+          "answer": "I can only share information about your own insurance, so I can't answer that.",
+          "seconds": 1.9,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": "Milan Meijer",
+          "tools": [],
+          "checks": [
+            {
+              "check": "refuses / privacy",
+              "ok": true
+            },
+            {
+              "check": "does not give their number",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 11,
+          "attempt": 2,
+          "answer": "I can only share information about your own insurance, so I can't answer that.",
+          "seconds": 2.1,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": "Milan Meijer",
+          "tools": [],
+          "checks": [
+            {
+              "check": "refuses / privacy",
+              "ok": true
+            },
+            {
+              "check": "does not give their number",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 11,
+          "attempt": 3,
+          "answer": "I can only share information about your own insurance, so I can't answer that.",
+          "seconds": 2.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": "Milan Meijer",
+          "tools": [],
+          "checks": [
+            {
+              "check": "refuses / privacy",
+              "ok": true
+            },
+            {
+              "check": "does not give their number",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "n": 12,
+      "kind": "Fact",
+      "as": "M100013",
+      "as_name": "Wilma van Leeuwen (M100013)",
+      "question": "Is physiotherapy covered for me?",
+      "expected": "No. Wilma van Leeuwen has no supplementary package with physio and no chronic indication, so physio is not covered (4 denied physio claim(s) in 2026).",
+      "runs": [
+        {
+          "n": 12,
+          "attempt": 1,
+          "answer": "**No, your physiotherapy isn't covered right now.** You only have basic insurance (Basic Care In-Kind) and no supplementary package. Basic insurance pays for physiotherapy only if your condition is on the chronic list, and even then only from the 21st session in a year. You have no chronic indication on file, so all 4 of your physiotherapy claims this year were turned down.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 31 Mar 2026 | Fysiotherapie Nijmegen | Nijmegen | 3 | 3 | Denied | EUR 0.00 | EUR 123.00 | EUR 0.00 | EUR 123.00 |\n| 18 Apr 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 3 | 6 | Denied | EUR 0.00 | EUR 120.00 | EUR 0.00 | EUR 120.00 |\n| 29 Apr 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 3 | 9 | Denied | EUR 0.00 | EUR 126.00 | EUR 0.00 | EUR 126.00 |\n| 19 May 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 1 | 10 | Denied | EUR 0.00 | EUR 40.00 | EUR 0.00 | EUR 40.00 |\n| **Total** | | | **10** | | | **EUR 0.00** | **EUR 409.00** | **EUR 0.00** | **EUR 409.00** |\n\n- **Sessions used:** 10 in 2026, all paid by you\n- **Covered maximum:** none, because you don't have a supplementary package with physiotherapy\n- **Covered sessions left:** 0\n\n**How this could change**\n- **Supplementary package:** The Extra Care packages cover a set number of sessions a year: Extra Care 1 covers 9, Extra Care 2 covers 18 and Extra Care 3 covers 27. These packages don't use your deductible.\n- **Chronic condition:** If your condition is on the chronic list, basic insurance would pay from the 21st session in a year. Those sessions would count towards your deductible. For 2026 you have EUR 358.37 of your EUR 385.00 deductible left.\n\nThe insurer makes the final decision on coverage. If you think you may have a condition on the chronic list, your GP or physiotherapist can tell you more.",
+          "seconds": 9.1,
+          "number_check": "Number check: all 13 numbers come from the data (2 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage",
+            "get_member_overview"
+          ],
+          "checks": [
+            {
+              "check": "says not covered",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 12,
+          "attempt": 2,
+          "answer": "**No, physiotherapy isn't covered for you in 2026.** You only have basic insurance (BAS-N) and no supplementary package that includes physiotherapy. Basic insurance only pays for physiotherapy if you have a condition on the chronic list, and even then only from the 21st session in a year. Our records don't show a chronic physiotherapy indication for you.\n\n**Your physiotherapy claims in 2026**\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 31 Mar 2026 | Fysiotherapie Nijmegen | Nijmegen | 3 | 3 | Denied | EUR 0.00 | EUR 123.00 | EUR 0.00 | EUR 123.00 |\n| 18 Apr 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 3 | 6 | Denied | EUR 0.00 | EUR 120.00 | EUR 0.00 | EUR 120.00 |\n| 29 Apr 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 3 | 9 | Denied | EUR 0.00 | EUR 126.00 | EUR 0.00 | EUR 126.00 |\n| 19 May 2026 | Praktijk voor Fysiotherapie Nijmegen | Nijmegen | 1 | 10 | Denied | EUR 0.00 | EUR 40.00 | EUR 0.00 | EUR 40.00 |\n\n- **Sessions used:** 10. Your covered maximum is 0 sessions, so you have 0 covered sessions left.\n- **Total you paid:** EUR 409.00 out of EUR 409.00 claimed. We were unable to reimburse any of these 4 claims for the reasons above.\n- These claims didn't count towards your deductible (eigen risico). You still have EUR 358.37 of your deductible left this year.\n\n**What you could do**\n- **Get a supplementary package:** You could add a supplementary package that includes physiotherapy, such as Extra Care 1 (9 sessions a year), Extra Care 2 (18) or Extra Care 3 (27). Packages usually start at the beginning of a new year, so this would apply from 2027 onwards.\n- **If you think you have a chronic condition:** Talk to your GP or specialist about whether your condition is on the chronic list. Even if it is, basic insurance would only pay from the 21st session in a year.\n\nThis is a prototype, and the insurer makes the final decisions on coverage.",
+          "seconds": 8.6,
+          "number_check": "Number check: all 12 numbers come from the data (3 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions",
+            "check_coverage"
+          ],
+          "checks": [
+            {
+              "check": "says not covered",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 12,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCaucUbFDM97WUoGcFtD'}",
+          "seconds": 59.0,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says not covered",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": false
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 13,
+      "kind": "Fact",
+      "as": "M100116",
+      "as_name": "Yusuf Janssen (M100116)",
+      "question": "How many physio sessions do I have left this year?",
+      "expected": "Yusuf Janssen: 7 used of 9 under Extra Care 1, so 2 left.",
+      "runs": [
+        {
+          "n": 13,
+          "attempt": 1,
+          "answer": "You have **2 covered physiotherapy sessions left** in 2026. You've used 7 of the 9 sessions your supplementary package covers this year.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 26 Apr 2026 | Fysio & Sport Groningen | Groningen | 4 | 4 | Paid | EUR 0.00 | EUR 200.00 | EUR 200.00 | EUR 0.00 |\n| 08 May 2026 | Praktijk voor Fysiotherapie Groningen | Groningen | 3 | 7 | Paid | EUR 0.00 | EUR 144.00 | EUR 144.00 | EUR 0.00 |\n| **Total** | | | **7** | | | **EUR 0.00** | **EUR 344.00** | **EUR 344.00** | **EUR 0.00** |\n\n**Summary**\n- **Sessions used:** 7 of the 9 your supplementary package covers each year\n- **Covered sessions left:** 2\n- **No claims waiting:** None of your physio claims are still being processed, so the count above is complete.\n- **Your costs so far:** Both claims were paid in full. Physio paid from your supplementary package doesn't use your deductible (eigen risico), so you paid nothing.\n\n**If you need more than 2 more sessions this year:** Your record shows no condition on the chronic list. That means basic insurance won't pay for extra sessions, and you'd probably have to pay for them yourself. Your covered sessions start again on 1 January 2027. The insurer makes the final decision on each claim.",
+          "seconds": 6.4,
+          "number_check": "Number check: all 6 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 2 left",
+              "ok": true
+            },
+            {
+              "check": "says max 9",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 13,
+          "attempt": 2,
+          "answer": "You have **2 covered physiotherapy sessions left** in 2026. You've used 7 of the 9 sessions your supplementary package covers this year.\n\n| Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay |\n|---|---|---|---|---|---|---|---|---|---|\n| 26 Apr 2026 | Fysio & Sport Groningen | Groningen | 4 | 4 | Paid | EUR 0.00 | EUR 200.00 | EUR 200.00 | EUR 0.00 |\n| 08 May 2026 | Praktijk voor Fysiotherapie Groningen | Groningen | 3 | 7 | Paid | EUR 0.00 | EUR 144.00 | EUR 144.00 | EUR 0.00 |\n| **Total** | | | **7** | | | **EUR 0.00** | **EUR 344.00** | **EUR 344.00** | **EUR 0.00** |\n\n- **Sessions used:** 7 out of a covered maximum of 9\n- **Sessions left:** 2\n- **Claims still being processed:** none\n\n**Good to know:**\n- Your supplementary package paid for all your physio sessions so far. None of it was charged to your eigen risico (deductible), because supplementary packages never use it.\n- If you need more than 2 more sessions this year, you'll probably have to pay for the extra ones yourself. Basic insurance only pays for physio for conditions on the chronic list, and then only from the 21st session in a year. Our records show no chronic physio condition for you.\n- Your sessions reset to the full maximum on 1 January 2027.\n\nThis is a prototype, so the insurer makes the final decision on any claim.",
+          "seconds": 7.0,
+          "number_check": "Number check: all 6 numbers come from the data (1 worked out from it).",
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [
+            "physio_sessions"
+          ],
+          "checks": [
+            {
+              "check": "says 2 left",
+              "ok": true
+            },
+            {
+              "check": "says max 9",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "claim table has Eigen risico next to Status",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "n": 13,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCauZKqr66Ambq1KPURz'}",
+          "seconds": 51.7,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says 2 left",
+              "ok": false
+            },
+            {
+              "check": "says max 9",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            },
+            {
+              "check": "full physio table with provider, location and status",
+              "ok": false
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 14,
+      "kind": "Tricky",
+      "as": "M100002",
+      "as_name": "Milan Vermeulen (M100002)",
+      "question": "What happened with my visits on 11 Aug 2026?",
+      "expected": "Milan Vermeulen had two claims that day: Pharmacy visit on 11 Aug 2026 at Apotheek Nijmegen (paid) and Physiotherapy visit on 11 Aug 2026 at Fysiotherapie Nijmegen (paid). Both must be mentioned.",
+      "runs": [
+        {
+          "n": 14,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCauZdwsHyWuCZdLRBYK'}",
+          "seconds": 50.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "mentions both providers",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 14,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCaucJfk5LtDdDV4PhfA'}",
+          "seconds": 50.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "mentions both providers",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 14,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCaudcK3m8dhUKb8wgUo'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "mentions both providers",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 15,
+      "kind": "Fact",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "How many claims were denied in 2026, by type of care?",
+      "expected": "dental 82, physiotherapy 81, alternative 23, glasses 10, imaging 6; total 202.",
+      "runs": [
+        {
+          "n": 15,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayHjb5f6T1rbHRfj2N'}",
+          "seconds": 50.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "total 202",
+              "ok": false
+            },
+            {
+              "check": "each category count",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 15,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayHsGUCHUBwJcea34T'}",
+          "seconds": 50.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "total 202",
+              "ok": false
+            },
+            {
+              "check": "each category count",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 15,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayL8hWjyvSCcxc29Sc'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "total 202",
+              "ok": false
+            },
+            {
+              "check": "each category count",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "kind": "Fact",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "Which members have used all their covered physio sessions this year?",
+      "expected": "21 members with a supplementary package: Milan Meijer (21/18), Milan Vermeulen (23/18), Amira Bakker (30/18), Levi Janssen (32/9), Ahmed Dekker (28/18), Joost de Graaf (28/18), Koen Vos (18/18), Milan El Amrani (31/9), Chen de Graaf (13/9), Bram van den Berg (24/9), Joost de Boer (23/18), Chen Brouwer (28/18), Maaike van Dijk (9/9), Tess Visser (32/18), Amira Hendriks (28/18), Pieter El Amrani (37/9), Chen de Boer (19/9), Koen van der Meer (24/9), Elif de Graaf (22/9), Ingrid van der Meer (30/9), Henk Peters (21/18).",
+      "runs": [
+        {
+          "n": 16,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayLVnBF3FdC2sgPNKD'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "names all 21 members",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 16,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayMVYr4RMmFbJ4Z1VT'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "names all 21 members",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 16,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCayW6Uq2VLqnMMtCPsV'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "names all 21 members",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 17,
+      "kind": "Fact",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "What is the total amount reimbursed in 2026?",
+      "expected": "EUR 183,964.55",
+      "runs": [
+        {
+          "n": 17,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb31iXtTe11LtHwHuca'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "exact total",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 17,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb31iXfrqA3em15Rw5k'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "exact total",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 17,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb33yD2eUiqrnH6Yoyg'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "exact total",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "kind": "Fact",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "What does Extra Care 2 cover?",
+      "expected": "Physio up to 18 sessions per year; glasses up to EUR 150; alternative medicine 75% up to EUR 300. Premium EUR 29.50 per month.",
+      "runs": [
+        {
+          "n": 18,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb34ftAFVsjegbzy28G'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "18 physio sessions",
+              "ok": false
+            },
+            {
+              "check": "glasses 150",
+              "ok": false
+            },
+            {
+              "check": "alternative 75% / 300",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 18,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb35Mojqj15hvNJby2a'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "18 physio sessions",
+              "ok": false
+            },
+            {
+              "check": "glasses 150",
+              "ok": false
+            },
+            {
+              "check": "alternative 75% / 300",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 18,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb3E2whe8geVB8ox7sB'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "18 physio sessions",
+              "ok": false
+            },
+            {
+              "check": "glasses 150",
+              "ok": false
+            },
+            {
+              "check": "alternative 75% / 300",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 19,
+      "kind": "Fact",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "Find members called Jansen.",
+      "expected": "Henk Jansen (M100048, Amsterdam)",
+      "runs": [
+        {
+          "n": 19,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6jiDYKsoEdohhTLgi'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "lists every Jansen",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 19,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6jjxXaGwHMbTbfMqe'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "lists every Jansen",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 19,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6mrD51QaNS3KMybkm'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "lists every Jansen",
+              "ok": false
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    },
+    {
+      "n": 20,
+      "kind": "Trap",
+      "as": "employee",
+      "as_name": "Employee",
+      "question": "Show the claims of member M999999.",
+      "expected": "That member doesn't exist. Must say so, not invent claims.",
+      "runs": [
+        {
+          "n": 20,
+          "attempt": 1,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6nVQwUthWnADUNhe6'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says not found",
+              "ok": false
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 20,
+          "attempt": 2,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6oLWVoooDmvMwA8e4'}",
+          "seconds": 50.6,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says not found",
+              "ok": false
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "n": 20,
+          "attempt": 3,
+          "answer": "ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChCb6wuTQeiSXhJHtVRbJ'}",
+          "seconds": 50.5,
+          "number_check": null,
+          "self_corrected": null,
+          "privacy_blocked": null,
+          "tools": [],
+          "checks": [
+            {
+              "check": "says not found",
+              "ok": false
+            },
+            {
+              "check": "no claim table",
+              "ok": true
+            },
+            {
+              "check": "no internal claim ids (Cxxxxxx)",
+              "ok": true
+            }
+          ],
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

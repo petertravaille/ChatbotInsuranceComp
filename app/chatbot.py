@@ -42,6 +42,10 @@ How to work:
   oldest first, with columns:
   Visit date | Provider | Location | Sessions | Running total | Status | Eigen risico | Claimed | Reimbursed | You pay
   Below it, give total sessions used versus the covered maximum and how many covered sessions are left.
+- Copy every amount, percentage and limit from the tool result for that exact member, product and year.
+  When you compare products, take each product's figures from its own entry. A member's deductible
+  (eigen risico) is their total: the mandatory EUR 385.00 plus any voluntary deductible.
+- Before answering, add up any totals you show again and check they match the rows above them.
 - Keep answers short and structured: a direct answer first, then the supporting details. Use EUR amounts
   with two decimals. Use Markdown tables only when listing several claims.
 - The data covers only the years 2025 and 2026, and only the products in the policy database. If something
@@ -82,6 +86,7 @@ class ChatSession:
         self.system = SYSTEM_BASE + "\n" + extra
         self.messages = []
         self.last_checks = {}   # privacy guard and number check for the latest answer
+        self.corrected_numbers = None  # numbers that triggered a self-correction round, if any
         self._tool_outputs = []
 
     def ask(self, question):
@@ -96,6 +101,20 @@ class ChatSession:
                                          f"{CLAIM_ID.search(answer).group()}. Give the same answer again without "
                                          "any claim ids, naming each claim by its visit date, type of care and "
                                          "provider instead.)")
+                tools_used += more
+                answer = CLAIM_ID.sub("[claim]", answer)
+            first = number_check(answer, self._tool_outputs)
+            self.corrected_numbers = None
+            if first and first["missing"] and (self.role == "employee" or not privacy_leak(answer, self.member_id)):
+                # Self-correction round: numbers that are not in (or simply worked out from) the data the tools
+                # returned are often copy or adding mistakes. Ask once to recheck them against the tool results.
+                self.corrected_numbers = first["missing"]
+                answer, more = self._ask(
+                    "(System check: these numbers in your last answer were not found in the data the tools returned: "
+                    + ", ".join(f"{n:g}" for n in first["missing"])
+                    + ". Recheck every number against the tool results and recalculate any totals. Then give the "
+                    "full answer again, corrected, without mentioning this check. If a number is a correct "
+                    "calculation or estimate, keep it and show briefly how it was worked out.)")
                 tools_used += more
                 answer = CLAIM_ID.sub("[claim]", answer)
             return self._check(answer, start), tools_used

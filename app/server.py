@@ -10,7 +10,7 @@ from flask import Flask, jsonify, request, send_from_directory, session
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chatbot import ChatSession  # noqa: E402
-from tools import list_members_for_login  # noqa: E402
+from tools import CURRENT_YEAR, _connect, claims_table, list_members_for_login  # noqa: E402
 
 STATIC = Path(__file__).resolve().parent / "static"
 app = Flask(__name__, static_folder=str(STATIC), static_url_path="/static")
@@ -67,7 +67,7 @@ def index():
 
 @app.get("/api/members")
 def members():
-    return jsonify(list_members_for_login())
+    return jsonify(list_members_for_login(min(int(request.args.get("limit", 40)), 1000)))
 
 
 @app.post("/api/login")
@@ -88,6 +88,7 @@ def login():
     chat_id = secrets.token_urlsafe(16)
     CHATS[chat_id] = ChatSession(role, member_id, name)
     session["chat_id"] = chat_id
+    session["role"], session["member_id"] = role, member_id
     return jsonify({"role": role, "member_id": member_id, "name": name or "Employee"})
 
 
@@ -116,12 +117,34 @@ def chat():
         return jsonify({"error": f"Claude API error ({e.status_code}): {e.message}"}), 502
     except anthropic.APIConnectionError:
         return jsonify({"error": "Could not reach the Claude API. Check your internet connection."}), 502
-    return jsonify({"answer": answer, "tools_used": tools_used})
+    return jsonify({"answer": answer, "tools_used": tools_used, "checks": chat.last_checks})
+
+
+@app.get("/api/claims")
+def claims():
+    """The fixed claims table on the page. Members always get their own claims (from the session)."""
+    if session.get("chat_id", "") not in CHATS:
+        return jsonify({"error": "Please sign in first."}), 401
+    member_id = session["member_id"] if session.get("role") == "member" else request.args.get("member_id")
+    try:
+        year = int(request.args.get("year", CURRENT_YEAR))
+    except ValueError:
+        return jsonify({"error": "year must be a number"}), 400
+    if not member_id:
+        return jsonify({"error": "member_id is needed"}), 400
+    con = _connect()
+    try:
+        data = claims_table(con, member_id, year)
+    finally:
+        con.close()
+    return jsonify(data), (404 if "error" in data else 200)
 
 
 @app.post("/api/logout")
 def logout():
     CHATS.pop(session.pop("chat_id", ""), None)
+    session.pop("role", None)
+    session.pop("member_id", None)
     return jsonify({"ok": True})
 
 

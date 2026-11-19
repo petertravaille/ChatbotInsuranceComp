@@ -5,6 +5,7 @@ import re
 
 import anthropic
 
+from guards import BLOCKED_ANSWER, number_check, privacy_leak
 from tools import CURRENT_YEAR, execute_tool, tool_definitions
 
 MODEL = "claude-opus-5-5"
@@ -60,7 +61,7 @@ Help them understand what care they have used, what was reimbursed and why, and 
 SYSTEM_EMPLOYEE = """
 You are talking to an employee of the insurer (claims handler / customer service). They may ask about any
 member, about policies, or for totals and trends across all data. Use find_members to look up members by
-name, and run_sql for aggregate questions (but never show claim ids from its results). Refer to members by name and member id."""
+name, physio_usage for physiotherapy limits across members, and run_sql for other totals (but never show claim ids from its results). Refer to members by name and member id."""
 
 
 CLAIM_ID = re.compile(r"\bC\d{6}\b")
@@ -80,10 +81,13 @@ class ChatSession:
                  else SYSTEM_EMPLOYEE)
         self.system = SYSTEM_BASE + "\n" + extra
         self.messages = []
+        self.last_checks = {}   # privacy guard and number check for the latest answer
+        self._tool_outputs = []
 
     def ask(self, question):
         """Send a question, run tool calls until Claude answers. Returns (answer_text, tools_used)."""
         start = len(self.messages)
+        self._tool_outputs = []
         try:
             answer, tools_used = self._ask(question)
             if CLAIM_ID.search(answer):
@@ -94,12 +98,26 @@ class ChatSession:
                                          "provider instead.)")
                 tools_used += more
                 answer = CLAIM_ID.sub("[claim]", answer)
-            return answer, tools_used
+            return self._check(answer, start), tools_used
         except Exception:
             # Drop the half-finished turn so a failed request can't leave a tool call
             # without its result in the history (which would break every later question).
             del self.messages[start:]
             raise
+
+    def _check(self, answer, start):
+        """Privacy guard (members) and number check, run on every answer before it is shown."""
+        self.last_checks = {"privacy_blocked": None, "numbers": None}
+        if self.role == "member":
+            leak = privacy_leak(answer, self.member_id)
+            if leak:
+                self.last_checks["privacy_blocked"] = leak
+                # Keep the blocked text out of the history too, so it can't come back in a later answer.
+                del self.messages[start + 1:]
+                self.messages.append({"role": "assistant", "content": BLOCKED_ANSWER})
+                return BLOCKED_ANSWER
+        self.last_checks["numbers"] = number_check(answer, self._tool_outputs)
+        return answer
 
     def _ask(self, question):
         self.messages.append({"role": "user", "content": question})
@@ -134,6 +152,8 @@ class ChatSession:
             results = []
             for call in calls:
                 output, is_error = execute_tool(call.name, call.input, self.role, self.member_id)
+                if not is_error:
+                    self._tool_outputs.append(output)
                 tools_used.append({"tool": call.name, "input": call.input, "error": is_error})
                 results.append({"type": "tool_result", "tool_use_id": call.id,
                                 "content": output, "is_error": is_error})

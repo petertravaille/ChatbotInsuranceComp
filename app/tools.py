@@ -204,6 +204,56 @@ def physio_sessions(con, member_id, year=CURRENT_YEAR):
             "note": pv["note"], "sessions": rows}
 
 
+def claims_table(con, member_id, year=CURRENT_YEAR):
+    """Rows for the fixed claims table on the web page, built straight from the data (no AI involved)."""
+    member = con.execute("SELECT member_id, first_name, last_name FROM members WHERE member_id = ?",
+                         (member_id,)).fetchone()
+    if not member:
+        return {"error": f"No member found with id {member_id}."}
+    rows = _rows(con.execute(
+        "SELECT c.service_date, c.care_category, c.physio_visits, c.status, c.deductible_applied_eur AS eigen_risico_eur, "
+        "c.claimed_amount_eur AS claimed_eur, c.reimbursed_amount_eur AS reimbursed_eur, c.member_pays_eur, "
+        "c.decision_reason AS reason, p.name AS provider, p.city AS location "
+        "FROM claims c JOIN providers p USING (provider_id) WHERE c.member_id = ? AND substr(c.service_date,1,4) = ? "
+        "ORDER BY c.service_date DESC", (member_id, str(year))))
+    for r in rows:
+        r["visit_date"] = nice_date(r["service_date"])
+        r["type_of_care"] = CATEGORY_NAMES.get(r["care_category"], r["care_category"])
+        if r["status"] == "pending":
+            r["eigen_risico_eur"] = None  # not decided yet
+    summary = None
+    ov = get_member_overview(con, member_id, year)
+    if "deductible" in ov:
+        sup = [pid for pid in ov["policies"] if pid.startswith("SUP")]
+        summary = {"eigen_risico_used_eur": ov["deductible"]["used_eur"],
+                   "eigen_risico_total_eur": ov["deductible"]["total_eur"],
+                   "physio_sessions_used": ov["physiotherapy"]["visits_claimed_total"],
+                   "physio_sessions_covered": ov["physiotherapy"]["max_visits_per_year_supplementary"],
+                   "physio_package": ov["policies"][sup[0]] if sup else None,
+                   "policies": list(ov["policies"].values())}
+    return {"member": {"member_id": member["member_id"], "name": f"{member['first_name']} {member['last_name']}"},
+            "year": year, "summary": summary, "claims": rows}
+
+
+def physio_usage(con, year=CURRENT_YEAR, only_limit_reached=False):
+    """Employees: physiotherapy sessions per member for a year versus their supplementary maximum."""
+    rows = []
+    for (mid,) in con.execute("SELECT member_id FROM members ORDER BY member_id").fetchall():
+        o = get_member_overview(con, mid, year)
+        p = o.get("physiotherapy")
+        if not p or not p["visits_claimed_total"]:
+            continue
+        mx = p["max_visits_per_year_supplementary"]
+        if only_limit_reached and not (mx and p["visits_claimed_total"] >= mx):
+            continue
+        rows.append({"member_id": mid, "name": f"{o['member']['first_name']} {o['member']['last_name']}",
+                     "max_visits": mx, "visits_claimed": p["visits_claimed_total"],
+                     "remaining": p["supplementary_visits_remaining"],
+                     "denied_visits": p["visits_in_denied_claims"]})
+    rows.sort(key=lambda r: -r["visits_claimed"])
+    return {"year": year, "total": len(rows), "members": rows[:MAX_ROWS]}
+
+
 def get_policy_terms(con, policy_id=None, care_category=None):
     sql = ("SELECT p.policy_id, p.product_name, p.product_type, p.monthly_premium_eur, r.care_category, "
            "r.category_name, r.covered_pct, r.annual_limit_eur, r.max_visits_per_year, r.requires_preauth, "
@@ -370,6 +420,10 @@ def tool_definitions(role):
             _tool("find_members", "Find members by (part of) their name and/or city.",
                   {"name": {"type": "string"}, "city": {"type": "string"},
                    "limit": {"type": "integer"}}, []),
+            _tool("physio_usage",
+                  "Physiotherapy sessions per member for a year versus their supplementary maximum. Set "
+                  "only_limit_reached to list members who used all their covered sessions.",
+                  {"year": _YEAR, "only_limit_reached": {"type": "boolean"}}, []),
             _tool("run_sql",
                   "Run one read-only SQL SELECT across both databases for questions the other tools can't "
                   "answer (counts, totals, trends). claim_id is internal: you may use it inside queries but never "
@@ -384,6 +438,7 @@ _IMPL = {
     "search_claims": search_claims,
     "get_claim": get_claim,
     "physio_sessions": physio_sessions,
+    "physio_usage": physio_usage,
     "get_policy_terms": get_policy_terms,
     "check_coverage": check_coverage,
     "find_members": find_members,
@@ -393,11 +448,13 @@ _IMPL = {
 
 def execute_tool(name, args, role, member_id=None):
     """Run a tool and return (json_text, is_error). Members are always pinned to their own id."""
+    # Members never get the employee-only tools, even if the model asks for one by name.
     allowed = {t["name"] for t in tool_definitions(role)}
     if name not in allowed:
         return json.dumps({"error": f"Tool {name} is not available."}), True
     args = {k: v for k, v in dict(args).items() if v is not None}
     if role == "member":
+        # Every lookup is locked to the signed-in member, whatever id the model passed.
         if name in ("get_member_overview", "search_claims", "check_coverage", "get_claim", "physio_sessions"):
             args["member_id"] = member_id
     con = _connect()

@@ -12,6 +12,16 @@ based on the **health policy** terms. All data is synthetic (fake).
 - **Employees** can look up any member, read policy terms, and ask questions across
   all claims (for example "how many physio claims were denied in 2026?").
 
+## Guardrails
+
+- **Claims are named by visit**, never by internal id: visit date, plus type of care and provider when needed.
+- **Members only see their own data.** Every lookup is locked to the signed-in member in code, and members
+  don't get the employee-only tools (`find_members`, `physio_usage`, `run_sql`).
+- **Privacy guard:** in member mode, an answer that mentions another member's name or id is blocked.
+- **Number check:** every number in an answer is compared with the data the tools returned; numbers that
+  aren't there (or a simple sum of two of them) are flagged under the answer.
+- **Claims table on the page** is built straight from the database, so you can check any answer against it.
+
 ## How it works
 
 ```
@@ -19,6 +29,7 @@ data/claims.db    members, providers, claims, claim lines, physio visits per cla
 data/policies.db  products, coverage rules (incl. max physio visits per year),
                   deductibles, which member has which policy per year
 app/tools.py      read-only lookup tools over both databases
+app/guards.py     privacy guard and number check run on every answer
 app/chatbot.py    Claude (claude-opus-5-5) calling those tools in a loop
 app/server.py     Flask web server; app/static/ holds the chat page and header images
 ```
